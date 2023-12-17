@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    //싱글톤
+    public static GameManager instance;
+
+    //적구현 요소
+    public EnemyStats enemyStats;
+    public GameObject enemy1;
+    [SerializeField] private Transform spawnPoint;
+
+    //라운드 진행요소
+    public int round;
+    public int roundPerSpawn;
+    public float spawnInterval = 5f;
+    public int enemyCount;
+    //private Coroutine myCoroutine;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    void Start()
+    {
+        StartCoroutine("StartRound");
+    }
+
+    public IEnumerator StartRound()
+    {
+        RoundClear();
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < roundPerSpawn; i++)
+        {
+            GameObject enemy = Instantiate(enemy1);
+            enemy.transform.parent = spawnPoint;
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    //void StopMyCoroutine()
+    //{
+    //    if (myCoroutine != null)
+    //    {
+    //        StopCoroutine(myCoroutine);
+    //        myCoroutine = null;
+    //    }
+    //}
+
+    void RoundClear()
+    {
+        //TODO 클리어 메세지 출력
+        //진행 라운드 메세지 출력
+        round++;
+        roundPerSpawn += 5;
+        enemyCount = roundPerSpawn;
+    }
+}

@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    void OnStartButtonClick()
+    public void OnStartButtonClick()
     {
          SceneManager.LoadScene("gugminScene");
+    }
+
+    public void OnContinueClick()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }

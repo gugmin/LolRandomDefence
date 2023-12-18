@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     {
         GameManager.instance.enemyCount--;
         GameManager.instance.enemyStats.isDead = true;
+        //TODO 스폰 코루틴 수정
         if (GameManager.instance.enemyCount == 0)
         {
             GameManager.instance.StartCoroutine("StartRound");

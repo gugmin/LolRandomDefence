@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
 
     //적구현 요소
     public EnemyStats enemyStats;
+    //TODO 적 수정
     public GameObject enemy1;
     [SerializeField] private Transform spawnPoint;
 
     //라운드 진행요소
     public int round;
     public int roundPerSpawn;
-    public float spawnInterval = 5f;
+    public float spawnInterval;
     public int enemyCount;
-    //private Coroutine myCoroutine;
 
     void Awake()
     {
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
         StartCoroutine("StartRound");
@@ -47,15 +48,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
-    //void StopMyCoroutine()
-    //{
-    //    if (myCoroutine != null)
-    //    {
-    //        StopCoroutine(myCoroutine);
-    //        myCoroutine = null;
-    //    }
-    //}
 
     void RoundClear()
     {

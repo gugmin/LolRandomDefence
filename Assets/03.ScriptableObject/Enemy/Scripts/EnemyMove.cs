@@ -10,17 +10,18 @@ public class EnemyMove : MonoBehaviour
     Rigidbody2D _rigidbody2D;
     SpriteRenderer _spriteRenderer;
     int collCount;
-    
-    [SerializeField] float speed = 1.0f;
 
     private void Start()
     {
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0, -1, 0), 0.9f);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        Debug.DrawRay(transform.position, new Vector3(1, 0, 0), new Color(0, 1, 0));
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0, -1, 0), 0.9f);
         Move();
     }
 
@@ -30,7 +31,7 @@ public class EnemyMove : MonoBehaviour
         {
             print("충돌!");
             //충돌시 이동방향 왼쪽으로 90도 돌리기
-            dirVec = Quaternion.AngleAxis(90, Vector3.forward) * dirVec;
+            dirVec = Quaternion.AngleAxis(90f, Vector3.forward) * dirVec;
             //바라보는 방향 변경
             collCount++;
             if (collCount % 2 == 0)
@@ -43,7 +44,7 @@ public class EnemyMove : MonoBehaviour
 
     void Move()
     {
-        _rigidbody2D.velocity = dirVec * speed;
+        _rigidbody2D.velocity = dirVec * GameManager.instance.enemyStats.enemySpeed;
     }
 }
 

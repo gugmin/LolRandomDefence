@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
     public int roundPerSpawn;
     public float spawnInterval;
     public int enemyCount;
+
+    //라운드 갱신용 텍스트
+    private Text roundText;
 
     void Awake()
     {
@@ -56,5 +60,9 @@ public class GameManager : MonoBehaviour
         round++;
         roundPerSpawn += 5;
         enemyCount = roundPerSpawn;
+
+        //라운드 갱신용 텍스트
+        roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
+        roundText.text = round.ToString();
     }
 }

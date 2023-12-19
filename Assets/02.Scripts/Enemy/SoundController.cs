@@ -7,19 +7,13 @@ using UnityEngine.UI;
 public class SoundController : MonoBehaviour
 {
     public AudioMixer masterMixer;
-    public Slider masterAudioSlider;
-    public Slider bgmAudioSlider;
-    public Slider effectAudioSlider;
+    public Slider MasteraudioSlider;
+    public Slider BGMaudioSlider;
+    public Slider EffectaudioSlider;
 
-
-    public void ToggleAudioVolume()
+    public void MasterAudioControl()
     {
-        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
-    }
-
-    public void AudioMasterControl()
-    {
-        float sound = masterAudioSlider.value;
+        float sound = MasteraudioSlider.value;
 
         if (sound == -40f)
         {
@@ -31,9 +25,9 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    public void AudioBGMControl()
+    public void BGMAudioControl()
     {
-        float sound = bgmAudioSlider.value;
+        float sound = BGMaudioSlider.value;
 
         if (sound == -40f)
         {
@@ -45,9 +39,9 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    public void AudioEffectControl()
+    public void EffectAudioControl()
     {
-        float sound = effectAudioSlider.value;
+        float sound = EffectaudioSlider.value;
 
         if (sound == -40f)
         {
@@ -57,5 +51,10 @@ public class SoundController : MonoBehaviour
         {
             masterMixer.SetFloat("Effect", sound);
         }
+    }
+
+    public void ToggleAudioVolume()
+    {
+        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
     }
 }

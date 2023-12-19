@@ -8,11 +8,16 @@ public class SceneLoader : MonoBehaviour
 {
     public void OnStartButtonClick()
     {
-         SceneManager.LoadScene("gugminScene");
+         SceneManager.LoadScene("BinheeScene");
     }
 
     public void OnContinueClick()
     {
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void OnEndClick()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 }

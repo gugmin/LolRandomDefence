@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     [Header("Enemy")]
-    public int enemyHealth;
+    public float enemyHealth;
     public int enemySpeed;
     public Sprite enemySprite; 
     public bool isDead;

@@ -122,7 +122,7 @@ MonoBehaviour:
     m_Bits: 128
   towerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   isClick: 0
 --- !u!54 &3634336878361723909
 Rigidbody:

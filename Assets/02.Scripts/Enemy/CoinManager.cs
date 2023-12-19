@@ -67,7 +67,7 @@ public class CoinManager : MonoBehaviour
 
     //public class Tower : MonoBehaviour
     //{
-    //    public int sellPrice = 30; // 타워 판매 시 얻는 코인 수
+    //    public int sellPrice = 5; // 타워 판매 시 얻는 코인 수
 
     //    // 타워 판매 시 호출되는 함수
     //    public void SellTower()

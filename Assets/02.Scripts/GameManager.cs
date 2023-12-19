@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int roundPerSpawn;
     public float spawnInterval;
     public int enemyCount;
-
+    
     //라운드 갱신용 텍스트
     private Text roundText;
 

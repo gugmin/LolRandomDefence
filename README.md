@@ -44,7 +44,7 @@ Visual Studio 2022(C#)
 
 ### 💾깃허브 사용 방식
 Clone 방식으로 진행하였습니다.
-각자의 Branch에서 작업 후 main에 merge하였습니다.
+각자의 Branch에서 작업 후 패키지를 전송해 메인에 merge했습니다.
 
 -----
 

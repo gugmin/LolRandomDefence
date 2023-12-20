@@ -29,7 +29,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (collision.collider.CompareTag("Wall"))
         {
-            print("충돌!");
+            //print("충돌!");
             //충돌시 이동방향 왼쪽으로 90도 돌리기
             dirVec = Quaternion.AngleAxis(90f, Vector3.forward) * dirVec;
             //바라보는 방향 변경

@@ -15,10 +15,10 @@ MonoBehaviour:
   size: 1
   delay: 0.15
   power: 2
-  speed: 10
+  attackRange: 10
   bulletNameTag: 
-  duration: 5
-  spread: 4
-  numberofProjectilesPerShot: 1
-  multipleProjectilesAngel: 7
+  duration: 0
+  spread: 0
+  numberofProjectilesPerShot: 0
+  multipleProjectilesAngel: 0
   projectileColor: {r: 1, g: 1, b: 1, a: 1}

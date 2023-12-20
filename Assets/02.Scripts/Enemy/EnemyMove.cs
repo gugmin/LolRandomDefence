@@ -44,7 +44,7 @@ public class EnemyMove : MonoBehaviour
 
     void Move()
     {
-        _rigidbody2D.velocity = dirVec * GameManager.instance.enemyStats.enemySpeed;
+        _rigidbody2D.velocity = dirVec * 3;
     }
 }
 

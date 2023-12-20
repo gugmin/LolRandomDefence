@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - TowerTile
   - Tower
+  - Bullet
   layers:
   - Default
   - TransparentFX

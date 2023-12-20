@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coins = 0; // 현재 보유 중인 코인 수
-    public int towerCost = 20; // 타워의 가격
+    public int coins = 10; // 현재 보유 중인 코인 수
+    public int towerCost = 10; // 타워의 가격
+    public int sellPrice = 5; // 타워 판매 가격
     public int upgradeCost = 10; // 업그레이드의 가격
+    public int coinOnKill = 1; // 몬스터 킬
+
     private int coinAmount;
 
     public static CoinManager instance;

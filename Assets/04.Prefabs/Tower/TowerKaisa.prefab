@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5320205809879296753}
   - component: {fileID: 5589224493403400610}
   - component: {fileID: 3683365023069208067}
-  - component: {fileID: 2754154754417073605}
   m_Layer: 0
   m_Name: TowerKaisa
   m_TagString: Untagged
@@ -102,6 +101,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5256284846579992118, guid: 386532ca46d02444badc7fb8b3f10979,
     type: 3}
   firePoint: {fileID: 8672120540773695119}
+  attackSO: {fileID: 11400000, guid: f5b3fd4fd8203774e947a71af11e47b4, type: 2}
 --- !u!58 &3683365023069208067
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,24 +137,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 6
---- !u!114 &2754154754417073605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864527979986555417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseStats:
-    statsChangeType: 0
-    power: 1
-    size: 1
-    attackRange: 1
-    delay: 1
-    grade: 0
-    attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
-  statsModifiers: []

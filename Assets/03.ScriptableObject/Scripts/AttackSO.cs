@@ -6,9 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="DefaultTowerAttackData",menuName ="Tower/Attacks/Default",order =0)]
 public class AttackSO : ScriptableObject
 {
-    [Header("Attack Info")]
-    public float size;
-    public float delay;
-    public int power;
-    public float attackRange;
+        
+    public int AttackSpeed;
+    public int Damage;
+    public int attackRange;
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8269401827951978352}
   - component: {fileID: 7569104909213401664}
   - component: {fileID: 5994649033637264410}
-  - component: {fileID: 5790733846364838498}
   m_Layer: 0
   m_Name: TowerAshe
   m_TagString: Untagged
@@ -103,6 +102,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
     type: 3}
   firePoint: {fileID: 7987160217894815178}
+  attackSO: {fileID: 11400000, guid: 9ca43f67b5721554e9b25ebea88ff333, type: 2}
 --- !u!58 &7569104909213401664
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -151,24 +151,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 7001611626254296797}
---- !u!114 &5790733846364838498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001611626254296797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseStats:
-    statsChangeType: 0
-    power: 0
-    size: 0
-    attackRange: 0
-    delay: 10
-    grade: 0
-    attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
-  statsModifiers: []

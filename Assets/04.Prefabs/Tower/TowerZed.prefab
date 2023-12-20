@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6183349855692663395}
   - component: {fileID: 2325955779621717642}
   - component: {fileID: 181017530925253520}
-  - component: {fileID: 6495563694885090067}
   m_Layer: 0
   m_Name: TowerZed
   m_TagString: Untagged
@@ -137,24 +136,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
---- !u!114 &6495563694885090067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244518504503501716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseStats:
-    statsChangeType: 0
-    power: 1
-    size: 1
-    attackRange: 1
-    delay: 1
-    grade: 0
-    attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
-  statsModifiers: []

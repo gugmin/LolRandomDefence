@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private float bulletSpeed = 5.0f;
     private Rigidbody2D rb;
+    public int damageAmount;
 
     void Start()
     {
@@ -15,9 +16,14 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("총알이랑 적 충돌확인");
-            // 적에게 데미지를 입히거나 필요한 작업 수행
+            // 적 객체에 데미지를 입히는 로직을 작성합니다.
+            // 예: collision.gameObject.GetComponent<Enemy>().TakeDamage(damageAmount);
             Destroy(gameObject);
         }
+    }
+
+    public void SetDamage(int damage)
+    {
+        damageAmount = damage; // 타워 데미지저장
     }
 }

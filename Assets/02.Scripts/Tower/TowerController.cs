@@ -7,28 +7,17 @@ public class TowerController : MonoBehaviour
    
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 발사될 위치
+    public AttackSO attackData;
     private List<Transform> enemiesInRange = new List<Transform>(); // 공격 가능한 적들의 리스트
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            
-            enemiesInRange.Add(other.transform); // 범위 안에 들어온 적을 리스트에 추가
-            Attack();
-        }
+        int attackSpeed = attackData.AttackSpeed;
+        int damage = attackData.Damage;
+        int attackRange = attackData.attackRange;
     }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            
-            enemiesInRange.Remove(other.transform); // 범위에서 나간 적을 리스트에서 제거
-            Attack();
-        }
-    }
+   
 
     private void Attack()
     {
@@ -36,7 +25,7 @@ public class TowerController : MonoBehaviour
         {
             if (enemiesInRange.Count > 0)
             {
-                Debug.Log("적찾기");
+                
                 Transform nearestEnemy = FindNearestEnemy(); // 가장 가까운 적 찾기
 
                 if (nearestEnemy != null)
@@ -50,7 +39,11 @@ public class TowerController : MonoBehaviour
                     GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, rotation);
                     Bullet bullet = newBullet.GetComponent<Bullet>();
 
-                    
+                    // 총알에 타워의 데미지 값을 할당
+                    if (bullet != null)
+                    {
+                        bullet.SetDamage(attackData.Damage);
+                    }
                 }
             }
         }

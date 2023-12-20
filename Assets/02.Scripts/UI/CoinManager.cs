@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    private int coins=500; // ���� ���� ���� ���� ��
+    private int coins=100000; // ���� ���� ���� ���� ��
     private int towerbuy=200; // Ÿ�� ���� ����
     private int towersell=100; // Ÿ�� �Ǹ� ����
     //public int towerupgrade; // ���׷��̵��� ����

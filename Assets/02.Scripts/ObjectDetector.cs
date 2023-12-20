@@ -21,7 +21,6 @@ public class ObjectDetector : MonoBehaviour
     private Camera _camera;
     private Ray _ray;
     private RaycastHit _rayHit;
-    private bool isSpawn = false;
 
     [SerializeField] private TowerStatusPanel towerStatusPanel; // Ÿ�� ����â ���⸦ ���� �����߽��ϴ�.
 
@@ -111,7 +110,6 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        Debug.Log("Ÿ�� ���� ����");
                         //Ÿ�� �ϳ� �������� ������ �ΰ� ��ġ��  ---> ������?
 
                         upgradeTower.Add(_rayHit.transform.GetComponent<TowerStatsHandler>());

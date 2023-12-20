@@ -21,16 +21,11 @@ public class ObjectDetector : MonoBehaviour
     private RaycastHit _rayHit;
     private bool isSpawn = false;
 
-    private GameObject towerStatusPanel; // Ÿ�� ����â ���⸦ ���� �����߽��ϴ�.
-    public GameObject clickTower; // Ÿ�� ������ �޾ƿ��� ���� �����߽��ϴ�.
+    [SerializeField] private TowerStatusPanel towerStatusPanel; // Ÿ�� ����â ���⸦ ���� �����߽��ϴ�.
 
     private void Awake()
     {
         _camera = Camera.main;
-    }
-    private void Start()
-    {
-        towerStatusPanel = GameObject.Find("Canvas").transform.GetChild(1).gameObject; // Ÿ�� ����â ��������
     }
     private void Update()
     {
@@ -68,10 +63,9 @@ public class ObjectDetector : MonoBehaviour
         {
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(_ray, out hit) && hit.collider != null && hit.transform.CompareTag("Tower"))
+            if (Physics.Raycast(_ray, out hit, Mathf.Infinity) && hit.transform.CompareTag("Tower"))
             {
-                towerStatusPanel.SetActive(true);
-                clickTower = hit.collider.gameObject;
+                towerStatusPanel.SetTowerStatusHandler(hit.transform);
             }
         }
     }
@@ -106,7 +100,6 @@ public class ObjectDetector : MonoBehaviour
                         break;
                     case ActionType.Sell:
                         _coinManager.SellTower(_rayHit.transform);
-                        Debug.Log("�Ĵ� ����");
                         break;
                 }
 

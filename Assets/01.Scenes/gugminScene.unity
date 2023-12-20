@@ -2664,6 +2664,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa01b2fea191e9419309e387865658b, type: 3}
+--- !u!1 &333146608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333146610}
+  - component: {fileID: 333146609}
+  m_Layer: 0
+  m_Name: ObjectDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &333146609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333146608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756b530a65f5ef8458ff5c60639cc0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSpawner: {fileID: 1447685763}
+  _towerController: {fileID: 0}
+--- !u!4 &333146610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333146608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.823468, y: 0.79704744, z: -0.020951208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345081147
 GameObject:
   m_ObjectHideFlags: 0
@@ -14157,9 +14203,9 @@ GameObject:
   - component: {fileID: 1178989005}
   - component: {fileID: 1178989007}
   - component: {fileID: 1178989006}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerTileDesign
-  m_TagString: Untagged
+  m_TagString: TowerTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15176,6 +15222,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1990789943}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1447685760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447685762}
+  - component: {fileID: 1447685763}
+  m_Layer: 0
+  m_Name: TowerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1447685762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447685760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9033065, y: -1.0694269, z: -0.045068678}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447685763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447685760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a388bbc61054abd468604b311f20099e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab:
+  - {fileID: 7001611626254296797, guid: 5a7b824da5b9a054688bfcb7daa0ab59, type: 3}
+  - {fileID: 9080055482775391771, guid: 7f30ffe7afdd6e14686860a3f0b94ee9, type: 3}
+  - {fileID: 8864527979986555417, guid: c29f72351a5ed1d4d93eb2f27ff25f73, type: 3}
+  - {fileID: 8686571155329869293, guid: ee9950e3a6b698c4583c707a4db6acb5, type: 3}
+  - {fileID: 6944898690774611825, guid: 40d3beb0e78ad504b8f5756435f6cb3f, type: 3}
+  - {fileID: 244518504503501716, guid: 1575eba09c1b66a4c846239cb47fd72e, type: 3}
 --- !u!4 &1463814895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4758643165141579708, guid: 2aa01b2fea191e9419309e387865658b,
@@ -17035,6 +17132,7 @@ MonoBehaviour:
   spawnInterval: 0.4
   enemyCount: 0
   playerLife: 30
+  enemyList: []
 --- !u!4 &1921739319
 Transform:
   m_ObjectHideFlags: 0

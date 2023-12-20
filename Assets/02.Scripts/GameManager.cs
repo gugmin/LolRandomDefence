@@ -59,9 +59,9 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < roundPerSpawn; i++)
         {
-            GameObject enemy = Instantiate(enemy1);
-            enemyList.Add(enemy.GetComponent<Enemy>());
-            enemy.transform.parent = spawnPoint;
+            GameObject _enemy = Instantiate(enemy);
+            enemyList.Add(_enemy.GetComponent<Enemy>());
+            _enemy.transform.parent = spawnPoint;
             yield return new WaitForSeconds(spawnInterval);
         }
     }

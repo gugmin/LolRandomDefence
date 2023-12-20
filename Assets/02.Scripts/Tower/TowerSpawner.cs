@@ -7,20 +7,14 @@ using UnityEngine.Tilemaps;
 
 public class TowerSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject towerPrefab;    //towerÁ¾·ù
-    //TODO °´Ã¼·Î ¸¸µé¾î¼­ towerPrefabÀ» ¿©·¯°³·Î ´ã°í RandomÀ¸·Î »ý¼ºÇØÁÖ±â
-
-    //Å¸¿ö ¼³Ä¡ÇÒ Å¸ÀÏ Á¤º¸¸¦ ¹Þ¾Æ¿À¸é ÇØ´ç Å¸ÀÏ À§Ä¡¿¡ prefabÈ­ ÇØµÐ Å¸¿ö »ý¼º
+    [SerializeField] private GameObject[] towerPrefab;   
     public void SpawnTower(Transform tileTransform)
     {
         TowerTile tile = tileTransform.GetComponent<TowerTile>();
-        //int randomIdx;
+        int randomIdx=Random.Range(0,6);
 
-        if (tile.IsTower == false)
-        {            
-            tile.IsTower = true;
-            //randomIdx=Random.Range(0, 7);
-            Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);
-        }
+        GameObject tower = Instantiate(towerPrefab[0], tileTransform.position, Quaternion.identity);
+        if(tower.GetComponent<TowerStatsHandler>() == null) { Debug.Log("ì˜¤ë¥˜"); }
+        tower.GetComponent<TowerStatsHandler>().CurrentStates.characterType = (CharacterType)randomIdx;
     }
 }

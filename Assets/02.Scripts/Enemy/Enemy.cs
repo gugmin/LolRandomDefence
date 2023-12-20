@@ -23,6 +23,7 @@ public class Condition
 
 public class Enemy : MonoBehaviour
 {
+    private List<Enemy> _enemyList;
     public Condition health;
     public SpriteRenderer spriteRenderer;
 
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         health.maxValue = GameManager.instance.enemyStats[GameManager.instance.round - 1].enemyHealth;
         spriteRenderer.sprite = GameManager.instance.enemyStats[GameManager.instance.round - 1].enemySprite;
         health.curValue = health.maxValue;
+        _enemyList = GameManager.instance.enemyList;
     }
 
     void Update()
@@ -65,12 +67,12 @@ public class Enemy : MonoBehaviour
     {
         GameManager.instance.enemyCount--;
         GameManager.instance.CoinManager.GetCoins();
-        //¶ó¿îµå¿¡ ¸ðµç ÀûÀÌ Á×¾úÀ»¶§
+        //ï¿½ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½
         if (GameManager.instance.enemyCount == 0)
         {
             GameManager.instance.StartCoroutine("StartRound");
         }
-
+        _enemyList.Remove(this.transform.GetComponent<Enemy>());
         Destroy(gameObject);
         //gameObject.SetActive(false);
     }

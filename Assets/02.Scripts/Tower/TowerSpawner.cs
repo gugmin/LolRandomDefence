@@ -7,20 +7,17 @@ using UnityEngine.Tilemaps;
 
 public class TowerSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject towerPrefab;    //towerÁ¾·ù
-    //TODO °´Ã¼·Î ¸¸µé¾î¼­ towerPrefabÀ» ¿©·¯°³·Î ´ã°í RandomÀ¸·Î »ý¼ºÇØÁÖ±â
-
-    //Å¸¿ö ¼³Ä¡ÇÒ Å¸ÀÏ Á¤º¸¸¦ ¹Þ¾Æ¿À¸é ÇØ´ç Å¸ÀÏ À§Ä¡¿¡ prefabÈ­ ÇØµÐ Å¸¿ö »ý¼º
+    [SerializeField] private GameObject[] towerPrefab;    //towerï¿½ï¿½ï¿½ï¿½
+    //TODO ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ towerPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Randomï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
+    //Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ prefabÈ­ ï¿½Øµï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SpawnTower(Transform tileTransform)
     {
         TowerTile tile = tileTransform.GetComponent<TowerTile>();
-        //int randomIdx;
+        int randomIdx=Random.Range(0,6);
 
-        if (tile.IsTower == false)
-        {            
-            tile.IsTower = true;
-            //randomIdx=Random.Range(0, 7);
-            Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);
-        }
+        GameObject tower = Instantiate(towerPrefab[randomIdx], tileTransform.position, Quaternion.identity);
+        tower.GetComponent<TowerStatsHandler>().CurrentStates.characterType = (CharacterType)randomIdx;
+      
+        
     }
 }

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coins; // 현재 보유 중인 코인 수
-    public int towerbuy; // 타워 구매 가격
-    public int towersell; // 타워 판매 가격
+    private int coins=500; // 현재 보유 중인 코인 수
+    private int towerbuy=200; // 타워 구매 가격
+    private int towersell=100; // 타워 판매 가격
     //public int towerupgrade; // 업그레이드의 가격
 
     public GameObject notEnoughCoinsPanel; // 코인 부족 시 보여줄 패널
@@ -36,15 +37,6 @@ public class CoinManager : MonoBehaviour
         if (coins >= towerbuy)
         {
             coins -= towerbuy;
-
-            TowerSpawner towerSpawner = FindObjectOfType<TowerSpawner>();
-
-            if (towerSpawner != null)
-            {
-                Transform playerTransform = transform;
-
-                towerSpawner.SpawnTower(playerTransform);
-            }
         }
         else
         {
@@ -53,11 +45,12 @@ public class CoinManager : MonoBehaviour
     }
 
     // 타워를 판매하는 함수
-    public void SellTower()
+    public void SellTower(Transform tower)
     {
-        coins += towersell;
-        // 타워 판매 로직 추가
-        // 타워를 씬에서 제거하는 등의 동작
+        //등급 가져와야 되고
+        TowerStatsHandler _stats = tower.GetComponent<TowerStatsHandler>();
+        coins += towersell * (_stats.CurrentStates.grade+1); //판매가격100원으로 일단 지정, 레벨별로 가격 늘어나게 설정
+        Destroy(tower.gameObject);
     }
 
     // 타워를 업그레이드하는 함수

@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ActionType
+{
+    Spawn,
+    Sell,
+    Upgrade,
+}
 public class ObjectDetector : MonoBehaviour
 {
     [SerializeField] private TowerSpawner _towerSpawner;
     [SerializeField] private TowerHandler _towerController;
+    [SerializeField] private CoinManager _coinManager;
+    private ActionType _actionType=ActionType.Upgrade;
 
     private Camera _camera;
     private Ray _ray;
     private RaycastHit _rayHit;
+    private bool isSpawn = false;
 
     private void Awake()
     {
@@ -19,6 +28,14 @@ public class ObjectDetector : MonoBehaviour
     private void Update()
     {
         CheckMouseClick();
+    }
+    public void OnPressedSpawnButton()
+    {
+        _actionType=ActionType.Spawn;
+    }
+    public void OnPressedSellButton()
+    {
+        _actionType =ActionType.Sell;
     }
     //마우스 눌리는지 확인
     private void CheckMouseClick()
@@ -53,13 +70,28 @@ public class ObjectDetector : MonoBehaviour
         {
             if (_rayHit.transform.CompareTag("TowerTile"))
             {
-                _towerSpawner.SpawnTower(_rayHit.transform);
+                if (_actionType == ActionType.Spawn)
+                {
+                    _towerSpawner.SpawnTower(_rayHit.transform);
+                    _coinManager.BuyTower();
+                    _actionType = ActionType.Upgrade;
+                }
             }
             else if(_rayHit.transform.CompareTag("Tower"))
             {
-                _towerController = _rayHit.transform.GetComponent<TowerHandler>();
-                _towerController.isClick = true;
-                _towerController.isSelect = true;
+                switch(_actionType)
+                {
+                    case ActionType.Upgrade:
+                        _towerController = _rayHit.transform.GetComponent<TowerHandler>();
+                        _towerController.isClick = true;
+                        _towerController.isSelect = true;
+                        break;
+                    case ActionType.Sell:
+                        _coinManager.SellTower(_rayHit.transform);
+                        Debug.Log("파는 로직");
+                        break;
+                }
+
             }
         }
     }

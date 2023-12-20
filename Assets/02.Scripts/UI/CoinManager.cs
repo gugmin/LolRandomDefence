@@ -8,7 +8,6 @@ public class CoinManager : MonoBehaviour
     public int coins; // 현재 보유 중인 코인 수
     public int towerbuy; // 타워 구매 가격
     public int towersell; // 타워 판매 가격
-    //public int towerupgrade; // 업그레이드의 가격
 
     public GameObject notEnoughCoinsPanel; // 코인 부족 시 보여줄 패널
 
@@ -56,33 +55,22 @@ public class CoinManager : MonoBehaviour
     public void SellTower()
     {
         coins += towersell;
+
         // 타워 판매 로직 추가
-        // 타워를 씬에서 제거하는 등의 동작
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {            
+            //Tower tower = hit.collider.GetComponent<Tower>();
+
+            //if (tower != null)
+            //{
+            //    // 타워 제거
+            //    Destroy(tower.gameObject);                
+            //}
+        }
     }
-
-    // 타워를 업그레이드하는 함수
-    //public void UpgradeTower()
-    //{
-    //    if (coins >= towerupgrade)
-    //    {
-    //        coins -= towerupgrade;
-
-    //        TowerHandler towerHandler = FindObjectOfType<TowerHandler>();
-
-    //        if (towerHandler != null)
-    //        {
-    //            towerHandler.UpgradeTower();
-    //        }
-    //        else 
-    //        {
-    //            Debug.Log("타워가 아닙니다");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        NotEnoughCoinsPanel();
-    //    }
-    //}
 
     public void GetCoins()
     {

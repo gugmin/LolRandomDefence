@@ -35,6 +35,8 @@ public class ObjectDetector : MonoBehaviour
             {
                 _towerController.isClick = false;
                 _towerController.CollcateTower();
+                _towerController.UpgradeTower();
+                _towerController.isSelect = false;
             }
         }
     }
@@ -57,6 +59,7 @@ public class ObjectDetector : MonoBehaviour
             {
                 _towerController = _rayHit.transform.GetComponent<TowerController>();
                 _towerController.isClick = true;
+                _towerController.isSelect = true;
             }
         }
     }

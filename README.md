@@ -57,28 +57,34 @@ Clone 방식으로 진행하였습니다.
 5. 라운드가 지날수록 강한 Enemy가 등장
 6. 최종라운드까지 클리어하면 승리
 
+
+ -----
+ 
 ## 📌게임의 정보
 ### ⌨🖱조작법
 Mouse LBT: 모든 상호작용
 
  -----
-
+ 
 ### 🤺타워 디자인
-타워 1의 이미지
-![Ashe1](https://github.com/gugmin/LolRandomDefence/assets/149345006/013e4720-a6d2-4f0b-a419-2535173f0386)
+타워 1의 이미지  
+![Ashe1](https://github.com/gugmin/LolRandomDefence/assets/149345006/7461c6de-6380-4d45-b240-d19a04e37455)
 
-타워 2의 이미지
-![Heimerdinger1](https://github.com/gugmin/LolRandomDefence/assets/149345006/42593d12-544e-464b-ad96-f3ea6d39cc87)
+타워 2의 이미지  
+![Heimerdinger1](https://github.com/gugmin/LolRandomDefence/assets/149345006/6871f1b8-bf5f-4df9-9c3e-a73684034a5b)
 
-타워 3의 이미지
-![Kai’Sa](https://github.com/gugmin/LolRandomDefence/assets/149345006/ccb9e5dc-e53b-4ce8-9e95-e23d62883ae1)
+타워 3의 이미지  
+![Kai’Sa](https://github.com/gugmin/LolRandomDefence/assets/149345006/998661ec-0dcb-4fa3-aa6e-dfafc7740be9)
 
-타워 4의 이미지
-![Kha_Zix1](https://github.com/gugmin/LolRandomDefence/assets/149345006/09d68f76-7485-4670-8773-9af7051a977c)
+타워 4의 이미지  
+![Kha_Zix1](https://github.com/gugmin/LolRandomDefence/assets/149345006/450803c3-7572-42e8-965c-a12940f4f89e)
 
-타워 5의 이미지
-![Vel_Koz1](https://github.com/gugmin/LolRandomDefence/assets/149345006/7c191a62-e6b5-4961-adfb-1e8588bcacd9)
+타워 5의 이미지  
+![Vel_Koz1](https://github.com/gugmin/LolRandomDefence/assets/149345006/9a9a405c-7089-474a-9d4b-859922282a43)
 
-타워 6의 이미지
-![Zed1](https://github.com/gugmin/LolRandomDefence/assets/149345006/4db730e4-e0f9-4a38-a781-2fa80bd1b15c)
+타워 6의 이미지  
+![Zed1](https://github.com/gugmin/LolRandomDefence/assets/149345006/d247a954-1252-4ba7-99c0-8365e02814fd)
 
+ -----
+
+ ### 💥적 디자인

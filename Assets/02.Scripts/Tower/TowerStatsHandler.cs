@@ -10,10 +10,10 @@ public class TowerStatsHandler : MonoBehaviour
 
     private void Awake()
     {
-        UpdateCharacterStats();
+        UpdateTowerStats();
     }
 
-    private void UpdateCharacterStats()
+    private void UpdateTowerStats()
     {
         AttackSO attackSO = null;
         if(_baseStats.attackSO!= null)
@@ -22,6 +22,10 @@ public class TowerStatsHandler : MonoBehaviour
         }
         CurrentStates = new TowerStats { attackSO = attackSO };
         CurrentStates.grade = _baseStats.grade;
+        CurrentStates.power = _baseStats.power;
+        CurrentStates.attackRange = _baseStats.attackRange;
+        CurrentStates.delay = _baseStats.delay;
+        CurrentStates.statsChangeType = _baseStats.statsChangeType;
     }
 
 }

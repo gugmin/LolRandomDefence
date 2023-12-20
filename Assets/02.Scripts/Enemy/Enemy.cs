@@ -29,6 +29,15 @@ public class Enemy : MonoBehaviour
         health.maxValue = GameManager.instance.enemyStats.enemyHealth;
         health.curValue = health.maxValue;
     }
+    void Update()
+    {
+        health.curValue -= Time.deltaTime;
+        health.uiBar.fillAmount = health.GetPercentage();
+        if (health.curValue <= 0f)
+        {
+            EnemyDie();
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -48,35 +57,7 @@ public class Enemy : MonoBehaviour
     {
         GameManager.instance.enemyCount--;
         GameManager.instance.enemyStats.isDead = true;
-        //골드 획득
-        if(GameManager.instance.round == 5)
-        {
-            //플레이어골드 += 50g
-        }
-        else if (GameManager.instance.round == 10)
-        {
-            //플레이어골드 += 30g
-        }
-        else if (GameManager.instance.round == 15)
-        {
-            //플레이어골드 += 350g
-        }
-        else if (GameManager.instance.round == 16 ||
-                    GameManager.instance.round == 17 ||
-                    GameManager.instance.round == 18 ||
-                    GameManager.instance.round == 19)
-        {
-            //플레이어골드 += 200g
-        }
-        else if (GameManager.instance.round == 20)
-        {
-            //플레이어골드 += 10000g
-        }
-        else //기본 라운드
-        {
-            //플레이어골드 += 20g
-        }
-
+        CoinManager.instance.GetCoins();
         //라운드에 모든 적이 죽었을때
         if (GameManager.instance.enemyCount == 0)
         {

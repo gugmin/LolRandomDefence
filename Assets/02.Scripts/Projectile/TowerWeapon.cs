@@ -14,21 +14,28 @@ public class TowerWeapon : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float delay;
     [SerializeField] private float range;
+    private TowerStatsHandler _stats;
     private WeaponState weaponState = WeaponState.SearchTarget;
     private Transform attackTarget = null;
     private List<Enemy> enemyList;
 
     private void Start()
     {
-        enemyList = GameManager.instance.enemyList;
+        _stats = GetComponent<TowerStatsHandler>();
+        SetUp();
     }
-
     private void Update()
     {
-        if(attackTarget!=null)
+        if (attackTarget != null)
         {
             RotateToTarget();
         }
+    }
+
+    public void SetUp()
+    {
+        enemyList=GameManager.instance.enemyList;
+        ChangeState(WeaponState.SearchTarget);
     }
 
     private void ChangeState(WeaponState newState)
@@ -42,7 +49,7 @@ public class TowerWeapon : MonoBehaviour
         float offset_x = attackTarget.position.x - transform.position.x;
         float offset_y = attackTarget.position.y-transform.position.y;
         float degree = Mathf.Atan2(offset_y,offset_x) * Mathf.Rad2Deg;
-        Debug.Log(degree);
+
         transform.rotation=Quaternion.Euler(0,0,degree);
     }
     private IEnumerator SearchTarget()
@@ -71,7 +78,7 @@ public class TowerWeapon : MonoBehaviour
         while(true)
         {
             // target있는지 검사 (없으면 찾는 코루틴 시작)
-            if(attackTarget==null)
+            if (attackTarget==null)
             {
                 ChangeState(WeaponState.SearchTarget);
                 break;
@@ -90,6 +97,8 @@ public class TowerWeapon : MonoBehaviour
     }
     private void SpawnProjectile()
     {
-        Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        clone.GetComponent<Projectile>().damage = _stats.CurrentStates.power;
+        clone.GetComponent<Projectile>().Setup(attackTarget);
     }
 }

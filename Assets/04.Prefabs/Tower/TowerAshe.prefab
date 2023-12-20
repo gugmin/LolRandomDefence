@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8973885699591728212}
   - component: {fileID: 4184078492848235645}
   - component: {fileID: -306742003365275336}
+  - component: {fileID: 8126409550814256525}
   m_Layer: 9
   m_Name: TowerAshe
   m_TagString: Tower
@@ -33,9 +34,10 @@ Transform:
   m_LocalPosition: {x: -4.48, y: 2.49, z: 0}
   m_LocalScale: {x: 0.8, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9142871813640515030}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5104127011819820680
 SpriteRenderer:
@@ -188,10 +190,58 @@ MonoBehaviour:
   _baseStats:
     statsChangeType: 0
     characterType: 0
-    power: 0
+    power: 50
     size: 0
     attackRange: 0
     delay: 0
     grade: 0
     attackSO: {fileID: 11400000, guid: 9ca43f67b5721554e9b25ebea88ff333, type: 2}
   statsModifiers: []
+--- !u!114 &8126409550814256525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001611626254296797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 3908445558340319846, guid: 3f81ca4756acea6489ab62eb5befc008,
+    type: 3}
+  spawnPoint: {fileID: 9142871813640515030}
+  delay: 0.5
+  range: 10
+--- !u!1 &7310920951206908451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9142871813640515030}
+  m_Layer: 9
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9142871813640515030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7310920951206908451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7987160217894815178}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

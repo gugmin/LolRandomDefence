@@ -179,6 +179,7 @@ MonoBehaviour:
     curValue: 0
     maxValue: 0
     uiBar: {fileID: 8524536266720415124}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &4669906658639548780
 GameObject:
   m_ObjectHideFlags: 0

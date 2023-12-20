@@ -6,18 +6,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //�̱���
     public static GameManager instance;
     public CoinManager CoinManager;
     public GameObject victoryPanel;
     public GameObject defeatPanel;
-    //������ ���
+
     public EnemyStats[] enemyStats;
-    //TODO �� ����
+
     public GameObject enemy;
     [SerializeField] private Transform spawnPoint;
 
-    //���� ������
+
     public int round;
     public int roundPerSpawn;
     public float spawnInterval;
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
     private int monstersKilled;
     private int totalCoinsEarned;
 
-    //���� ���ſ� �ؽ�Ʈ
+
     private Text roundText;
 
     public List<Enemy> enemyList;
@@ -44,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //적 생성 리스트
         enemyList = new List<Enemy>();
     }
 
@@ -65,11 +65,14 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
+    public void DestroyEnemy(Enemy enemy)
+    {
+        enemyList.Remove(enemy);
+        Destroy(enemy.gameObject);
+    }
     void RoundClear()
     {
-        //TODO Ŭ���� �޼��� ���
-        //���� ���� �޼��� ���
+
         round++;
         if (round == 5)
         {
@@ -92,24 +95,24 @@ public class GameManager : MonoBehaviour
 
         enemyCount = roundPerSpawn;
 
-        //���� ���ſ� �ؽ�Ʈ
+
         //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
         //roundText.text = round.ToString();
     }
 
-    // ���͸� óġ���� �� ȣ��Ǵ� �޼���
+
     public void MonsterKilled()
     {
         monstersKilled++;        
     }
 
-    // ���尡 Ŭ����Ǿ��� �� ȣ��Ǵ� �޼���
+
     public void RoundCleared()
     {
         clearedRounds++;        
     }
 
-    // ������ ����� �� ȣ��Ǵ� �޼���
+
     public void EarnCoins(int amount)
     {
         totalCoinsEarned += amount;        
@@ -129,7 +132,7 @@ public class GameManager : MonoBehaviour
     {        
         playTime = Time.time;
 
-        // Ŭ������ ����, ���� óġ ��, �� ȹ���� ���� ���� ���⼭ ����
+
 
         //if (playerWon)
         //{
@@ -141,7 +144,7 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    // Getter �޼����
+
     public float GetPlayTime()
     {
         return playTime;

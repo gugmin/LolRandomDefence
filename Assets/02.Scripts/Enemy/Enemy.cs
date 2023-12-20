@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     private void Awake()
-    {
+    {   
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
@@ -38,41 +39,28 @@ public class Enemy : MonoBehaviour
         health.curValue = health.maxValue;
         _enemyList = GameManager.instance.enemyList;
     }
-
-    void Update()
+    private void Update()
     {
-        health.curValue -= Time.deltaTime;
         health.uiBar.fillAmount = health.GetPercentage();
         if (health.curValue <= 0f)
         {
             EnemyDie();
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Bullet"))
-        {
-            health.curValue -= Time.deltaTime;
-        }
-
-        health.uiBar.fillAmount = health.GetPercentage();
-        if (health.curValue <= 0f)
-        {
-            EnemyDie();
-        }
-    }
-
-    void EnemyDie()
+    public void EnemyDie()
     {
         GameManager.instance.enemyCount--;
         GameManager.instance.CoinManager.GetCoins();
-        //���忡 ��� ���� �׾�����
+
         if (GameManager.instance.enemyCount == 0)
         {
             GameManager.instance.StartCoroutine("StartRound");
         }
-        Destroy(gameObject);
+        GameManager.instance.DestroyEnemy(this);
         //gameObject.SetActive(false);
+    }
+    public void EnemyHit(int damage)
+    {
+        health.curValue -= damage;
     }
 }

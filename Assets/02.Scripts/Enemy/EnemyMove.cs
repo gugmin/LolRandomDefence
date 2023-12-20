@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -42,6 +43,7 @@ public class EnemyMove : MonoBehaviour
         }
         else if (collision.collider.CompareTag("EndLine"))
         {
+            GameManager.instance.DestroyEnemy(gameObject.GetComponent<Enemy>());
             if(GameManager.instance.round % 5 == 0)
             {
                 GameManager.instance.playerLife -= 5;

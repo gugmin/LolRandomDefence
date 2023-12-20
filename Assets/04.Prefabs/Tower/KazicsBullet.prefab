@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7839368046302790212}
   - component: {fileID: 3612933912119133426}
   - component: {fileID: 3820661944052884146}
-  - component: {fileID: 6698320768962282327}
-  - component: {fileID: 596029383354397600}
+  - component: {fileID: 2314346685741063798}
+  - component: {fileID: -3546609818411547635}
   m_Layer: 0
   m_Name: KazicsBullet
   m_TagString: Untagged
@@ -150,20 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.33
---- !u!114 &6698320768962282327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8091805739583703682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
---- !u!114 &596029383354397600
+--- !u!114 &2314346685741063798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,3 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &-3546609818411547635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091805739583703682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

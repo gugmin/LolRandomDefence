@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class TowerHandler : MonoBehaviour
 {
+    private TowerWeapon _towerWeaponController;
     [SerializeField] private LayerMask towerTileLayer;
     [SerializeField] private LayerMask towerLayer;
     private TowerStatsHandler _stats;
@@ -36,6 +37,7 @@ public class TowerHandler : MonoBehaviour
         currentClosetTilePosition= transform.position;
         _basePosition = transform.position;
         _stats = GetComponent<TowerStatsHandler>();
+        _towerWeaponController = GetComponent<TowerWeapon>();
     }
 
     private void Update()
@@ -43,7 +45,7 @@ public class TowerHandler : MonoBehaviour
         DragAndDrop();
     }
 
-    //е╦О©╫О©╫ О©╫О©╫О©╫Л╫╨О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+
     public void DragAndDrop()
     {
         Vector3 offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,7 +55,7 @@ public class TowerHandler : MonoBehaviour
             _rigidbody.MovePosition(new Vector3(mousePosition.x, mousePosition.y, 0));
         }
     }
-    //е╦О©╫О©╫О©╫О©╫ е╦О©╫О©╫О©╫О©╫д║ е╦О©╫о╟О©╫О©╫О©╫ О©╫Ф╣╧
+
     private void OnTriggerStay(Collider collision)  
     {
         if (towerTileLayer.value == (towerTileLayer.value | (1 << collision.gameObject.layer)))
@@ -64,7 +66,7 @@ public class TowerHandler : MonoBehaviour
             }
         }
     }
-    //е╦О©╫О©╫О©╫О©╫О©╫О©╫ О©╫Ф╣╧
+
     private void OnTriggerEnter(Collider collision) 
     {
         if (!isSelect)
@@ -85,26 +87,30 @@ public class TowerHandler : MonoBehaviour
             _rigidbody.MovePosition(_basePosition);
             return;
         }
-            
+        //if(_collisionStats.CurrentStates.grade != _stats.CurrentStates.grade)
+        //{
+        //    Debug.Log("╟╟ю╨ ╣Н╠ч"+ _collisionStats.CurrentStates.grade +""+ _stats.CurrentStates.grade);
+        //}
+        //if (_collisionStats.CurrentStates.characterType != _stats.CurrentStates.characterType)
+        //{
+        //    Debug.Log("╟╟ю╨ дЁ╦╞ем"+ _collisionStats.CurrentStates.characterType+""+_stats.CurrentStates.characterType);
+        //}
+
         if (_collisionStats.CurrentStates.grade == _stats.CurrentStates.grade && _collisionStats.CurrentStates.characterType==_stats.CurrentStates.characterType)
         {
-            //TODO О©╫О©╫О©╫О©╫ О©╫О©╫ц╪ О©╫О©╫О©╫О©╫О©╫о╦О©╫ О©╫О©╫ О©╫О©╫ О©╫оЁО©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫в╟О©╫О©╫О©╫ О©╫О©╫ц╪О©╫О©╫ О©╫с╪О©╫О©╫О©╫ О©╫ц╥О©╫О©╫ж╟О©╫
-            //Debug.Log("О©╫О©╫ц╪ О©╫О©╫О©╫О©╫");
             _basePosition = _collisionTowerController.transform.position;
             Destroy(_collisionTowerController.gameObject);
-            //_baseTowerTile.IsTower = false;
             _collisionTowerController = null;
-            _stats.CurrentStates.grade++;
+            _stats.LevelUp();
         }
         else
         {
-            //Debug.Log("О©╫О©╫ц╪ О©╫р╟О©╫О©╫О©╫");
             _rigidbody.MovePosition(_basePosition);
         }
     }
-    //О©╫О©╫О©╫Л╫╨ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ь╢О©╫ е╦О©╫О©╫ О©╫О©╫д║.
     public void CollcateTower()
     {
         _rigidbody.MovePosition(_basePosition);
+        _towerWeaponController.StartState(WeaponState.SearchTarget);
     }
 }

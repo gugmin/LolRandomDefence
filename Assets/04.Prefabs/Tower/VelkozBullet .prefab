@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3667879971089380171}
   - component: {fileID: 8498048933655827757}
   - component: {fileID: 4745916128603452309}
-  - component: {fileID: -8167737656545638255}
-  - component: {fileID: 3194543295729560972}
+  - component: {fileID: -867248494922285839}
+  - component: {fileID: -4964484083783900460}
   m_Layer: 0
   m_Name: 'VelkozBullet '
   m_TagString: Untagged
@@ -150,7 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.59
---- !u!114 &-8167737656545638255
+--- !u!114 &-867248494922285839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
---- !u!114 &3194543295729560972
+--- !u!114 &-4964484083783900460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

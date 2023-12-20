@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 9142871813640515030}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5104127011819820680
 SpriteRenderer:
@@ -136,8 +136,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.91, y: 1.76, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.178344, y: 1.5146546, z: 0.2}
+  m_Center: {x: -0.015334263, y: 0.029208511, z: 0}
 --- !u!114 &4184078492848235645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,16 +170,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelStates:
+  - characterType: 0
+    power: 60
+    size: 1
+    attackRange: 8
+    delay: 0.6
+    grade: 1
+  - characterType: 0
+    power: 90
+    size: 1
+    attackRange: 10
+    delay: 0.5
+    grade: 2
   _baseStats:
-    statsChangeType: 0
     characterType: 0
-    power: 50
-    size: 0
-    attackRange: 0
-    delay: 0
+    power: 30
+    size: 1
+    attackRange: 5
+    delay: 0.8
     grade: 0
-    attackSO: {fileID: 11400000, guid: 9ca43f67b5721554e9b25ebea88ff333, type: 2}
-  statsModifiers: []
 --- !u!114 &8126409550814256525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,11 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3908445558340319846, guid: 3f81ca4756acea6489ab62eb5befc008,
+  projectilePrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
     type: 3}
   spawnPoint: {fileID: 9142871813640515030}
-  delay: 0.5
-  range: 10
 --- !u!1 &7310920951206908451
 GameObject:
   m_ObjectHideFlags: 0

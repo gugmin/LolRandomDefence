@@ -40,9 +40,9 @@ public class ObjectDetector : MonoBehaviour
             if(_towerController!= null)
             {
                 _towerController.isClick = false;
+                _towerController.isSelect = false;
                 _towerController.UpgradeTower();
                 _towerController.CollcateTower();
-                _towerController.isSelect = false;
             }
         }
         // Å¸¿ö ½ºÅÝÃ¢ ¶ç¿ì±â

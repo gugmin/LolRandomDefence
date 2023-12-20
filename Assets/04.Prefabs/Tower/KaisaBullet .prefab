@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6501318750919906090}
   - component: {fileID: 3025631474474042258}
   - component: {fileID: 1732352473099243346}
-  - component: {fileID: 8637433373222727194}
-  - component: {fileID: 3117036741166002019}
+  - component: {fileID: 4116994585491589922}
+  - component: {fileID: -6745051124661006952}
   m_Layer: 0
   m_Name: 'KaisaBullet '
   m_TagString: Untagged
@@ -150,20 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.7
---- !u!114 &8637433373222727194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256284846579992118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
---- !u!114 &3117036741166002019
+--- !u!114 &4116994585491589922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,3 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &-6745051124661006952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256284846579992118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

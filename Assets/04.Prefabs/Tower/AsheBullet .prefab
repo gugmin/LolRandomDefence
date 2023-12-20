@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 909373862851235082}
   - component: {fileID: 2665994179141817802}
   - component: {fileID: 6810719327165594838}
-  - component: {fileID: -1101486970137930754}
-  - component: {fileID: 5935518931406643141}
-  - component: {fileID: 6187567342900563661}
+  - component: {fileID: -4984694272155192464}
+  - component: {fileID: 726335274568257303}
   m_Layer: 0
   m_Name: 'AsheBullet '
   m_TagString: Untagged
@@ -151,42 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.59
---- !u!114 &-1101486970137930754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8081411118816456245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseStats:
-    statsChangeType: 0
-    characterType: 0
-    power: 0
-    size: 0
-    attackRange: 0
-    delay: 1
-    grade: 0
-    attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
-  statsModifiers: []
---- !u!114 &5935518931406643141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8081411118816456245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
---- !u!114 &6187567342900563661
+--- !u!114 &-4984694272155192464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,3 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &726335274568257303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8081411118816456245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

@@ -2534,6 +2534,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5831138259514672866, guid: 2aa01b2fea191e9419309e387865658b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831138259514672866, guid: 2aa01b2fea191e9419309e387865658b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9191605285354266060, guid: 2aa01b2fea191e9419309e387865658b,
         type: 3}
       propertyPath: m_Name
@@ -7393,10 +7403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: f8fa6387f730aaa4b8d0ef34be2cb88c, type: 2}
-  MasteraudioSlider: {fileID: 0}
-  BGMaudioSlider: {fileID: 0}
-  EffectaudioSlider: {fileID: 901444563}
 --- !u!114 &901444563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16965,10 +16971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: f8fa6387f730aaa4b8d0ef34be2cb88c, type: 2}
-  MasteraudioSlider: {fileID: 0}
-  BGMaudioSlider: {fileID: 1785137048}
-  EffectaudioSlider: {fileID: 0}
 --- !u!114 &1785137048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18787,10 +18789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: f8fa6387f730aaa4b8d0ef34be2cb88c, type: 2}
-  MasteraudioSlider: {fileID: 2106560994}
-  BGMaudioSlider: {fileID: 0}
-  EffectaudioSlider: {fileID: 0}
 --- !u!114 &2106560994
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private int monstersKilled;
     private int totalCoinsEarned;
 
+    public Image currentSprite;
+    public Image nextSprite;
+
 
     private Text roundText;
 
@@ -55,6 +58,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartRound()
     {
         RoundClear();
+        currentSprite.sprite = enemyStats[round - 1].enemySprite;
+        nextSprite.sprite = enemyStats[round].enemySprite;
         yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < roundPerSpawn; i++)
@@ -84,7 +89,7 @@ public class GameManager : MonoBehaviour
         }
         else if (round == 16 || round == 17 || round == 18 || round == 19)
         {
-
+            roundPerSpawn = 4;
         }
         else if (round == 20)
         {
@@ -94,10 +99,6 @@ public class GameManager : MonoBehaviour
         roundPerSpawn = 20;
 
         enemyCount = roundPerSpawn;
-
-
-        //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
-        //roundText.text = round.ToString();
     }
 
 

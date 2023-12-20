@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-public class TowerController : MonoBehaviour
+public class TowerHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask towerTileLayer;
     [SerializeField] private LayerMask towerLayer;
-    private TowerController _collisionTowerController;
-    private TowerController _towerController;
+    private TowerHandler _collisionTowerController;
+    private TowerHandler _towerController;
     private TowerTile _baseTowerTile;
     private Vector3 _basePosition;
 
@@ -96,7 +96,7 @@ public class TowerController : MonoBehaviour
         }
         if (towerLayer.value == (towerLayer.value | (1 << collision.gameObject.layer)))
         {
-            _collisionTowerController = collision.GetComponent<TowerController>();
+            _collisionTowerController = collision.GetComponent<TowerHandler>();
         }
     }
 

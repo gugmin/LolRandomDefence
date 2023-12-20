@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObjectDetector : MonoBehaviour
 {
     [SerializeField] private TowerSpawner _towerSpawner;
-    [SerializeField] private TowerController _towerController;
+    [SerializeField] private TowerHandler _towerController;
 
     private Camera _camera;
     private Ray _ray;
@@ -57,7 +57,7 @@ public class ObjectDetector : MonoBehaviour
             }
             else if(_rayHit.transform.CompareTag("Tower"))
             {
-                _towerController = _rayHit.transform.GetComponent<TowerController>();
+                _towerController = _rayHit.transform.GetComponent<TowerHandler>();
                 _towerController.isClick = true;
                 _towerController.isSelect = true;
             }

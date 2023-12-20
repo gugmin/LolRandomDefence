@@ -518,7 +518,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -10420,7 +10420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a388bbc61054abd468604b311f20099e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 1448251298649518395, guid: 09fc0be3f2fbc9b49b6a0bc69ff016d8,
+  towerPrefab: {fileID: 8686571155329869293, guid: ee9950e3a6b698c4583c707a4db6acb5,
     type: 3}
 --- !u!4 &1487364521 stripped
 Transform:

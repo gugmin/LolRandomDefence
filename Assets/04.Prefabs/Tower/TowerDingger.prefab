@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &942254557153869945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5186875705815246575}
+  m_Layer: 9
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5186875705815246575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942254557153869945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1258677930580622028}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9080055482775391771
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,11 +41,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1258677930580622028}
   - component: {fileID: 3690329524662892221}
-  - component: {fileID: 272257318045828423}
   - component: {fileID: 1428066368452625898}
   - component: {fileID: 4798397209980792693}
   - component: {fileID: -603368988856106496}
   - component: {fileID: 9198088675265921828}
+  - component: {fileID: 8514673829827460534}
   m_Layer: 9
   m_Name: TowerDingger
   m_TagString: Tower
@@ -33,9 +64,10 @@ Transform:
   m_LocalPosition: {x: -1.51, y: 2.52, z: 0}
   m_LocalScale: {x: 0.8, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5186875705815246575}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3690329524662892221
 SpriteRenderer:
@@ -89,22 +121,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &272257318045828423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9080055482775391771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5565696e5f13252418c04bc740351e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5825052839371152599, guid: 3da32a9d219cab5469498dd12d742b0f,
-    type: 3}
-  firePoint: {fileID: 1258677930580622028}
-  attackData: {fileID: 11400000, guid: a417b40f745f0184385649f1d0825c3d, type: 2}
 --- !u!54 &1428066368452625898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,7 +167,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.59, y: 1.58, z: 0.2}
+  m_Size: {x: 1.1, y: 1.5, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-603368988856106496
 MonoBehaviour:
@@ -185,13 +201,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelStates:
+  - characterType: 0
+    power: 60
+    size: 1
+    attackRange: 8
+    delay: 0.6
+    grade: 1
+  - characterType: 0
+    power: 90
+    size: 1
+    attackRange: 10
+    delay: 0.5
+    grade: 2
   _baseStats:
-    statsChangeType: 0
     characterType: 0
-    power: 0
-    size: 0
-    attackRange: 0
-    delay: 0
+    power: 30
+    size: 1
+    attackRange: 5
+    delay: 0.8
     grade: 0
-    attackSO: {fileID: 11400000, guid: a417b40f745f0184385649f1d0825c3d, type: 2}
-  statsModifiers: []
+--- !u!114 &8514673829827460534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080055482775391771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5825052839371152599, guid: 3da32a9d219cab5469498dd12d742b0f,
+    type: 3}
+  spawnPoint: {fileID: 5186875705815246575}

@@ -12,9 +12,16 @@ public class ObjectDetector : MonoBehaviour
     private Ray _ray;
     private RaycastHit _rayHit;
 
+    private GameObject towerStatusPanel; // 타워 스텟창 띄우기를 위해 선언했습니다.
+    public GameObject clickTower; // 타워 스텟을 받아오기 위해 선언했습니다.
+
     private void Awake()
     {
         _camera = Camera.main;
+    }
+    private void Start()
+    {
+        towerStatusPanel = GameObject.Find("Canvas").transform.GetChild(1).gameObject; // 타워 스텟창 가져오기
     }
     private void Update()
     {
@@ -34,9 +41,20 @@ public class ObjectDetector : MonoBehaviour
             if(_towerController!= null)
             {
                 _towerController.isClick = false;
+                _towerController.isSelect = false;
                 _towerController.UpgradeTower();
                 _towerController.CollcateTower();
-                _towerController.isSelect = false;
+            }
+        }
+        // 타워 스텟창 띄우기
+        if (Input.GetMouseButtonDown(1))
+        {
+            _ray = _camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(_ray, out hit) && hit.collider != null && hit.transform.CompareTag("Tower"))
+            {
+                towerStatusPanel.SetActive(true);
+                clickTower = hit.collider.gameObject;
             }
         }
     }

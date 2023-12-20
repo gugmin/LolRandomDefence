@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int playerLife;
 
     private float playTime;
+    private float maxHealthBarWidth;
     private int clearedRounds;
     private int monstersKilled;
     private int totalCoinsEarned;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
 
 
     private Text roundText;
+    public Text lifeText;
 
     public List<Enemy> enemyList;
 
@@ -53,6 +56,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine("StartRound");
+    }
+
+    void Update()
+    {
+        if (lifeText != null)
+        {
+            lifeText.text = playerLife.ToString();
+        }
     }
 
     public IEnumerator StartRound()
@@ -96,7 +107,7 @@ public class GameManager : MonoBehaviour
             roundPerSpawn = 1;
         }
         else
-        roundPerSpawn = 20;
+            roundPerSpawn = 20;
 
         enemyCount = roundPerSpawn;
     }
@@ -104,45 +115,44 @@ public class GameManager : MonoBehaviour
 
     public void MonsterKilled()
     {
-        monstersKilled++;        
+        monstersKilled++;
     }
 
 
     public void RoundCleared()
     {
-        clearedRounds++;        
+        clearedRounds++;
     }
 
 
     public void EarnCoins(int amount)
     {
-        totalCoinsEarned += amount;        
+        totalCoinsEarned += amount;
     }
 
     void ActivateVictoryPanel()
     {
-        victoryPanel.SetActive(true);        
+        victoryPanel.SetActive(true);
     }
-    
+
     public void ActivateDefeatPanel()
     {
-        defeatPanel.SetActive(true);        
+        defeatPanel.SetActive(true);
     }
 
     public void GameOver()
-    {        
+    {
         playTime = Time.time;
 
+        if (playerLife <= 0)
+        {
+            defeatPanel.SetActive(true);
+        }
 
-
-        //if (playerWon)
-        //{
-        //    ActivateVictoryPanel();
-        //}
-        //else
-        //{
-        //    ActivateDefeatPanel();
-        //}
+        if (round == 21)
+        {
+            victoryPanel.SetActive(true);
+        }
     }
 
 

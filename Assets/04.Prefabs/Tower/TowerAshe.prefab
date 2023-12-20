@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 7987160217894815178}
   - component: {fileID: 5104127011819820680}
   - component: {fileID: 8269401827951978352}
-  - component: {fileID: 7569104909213401664}
   - component: {fileID: 5994649033637264410}
   - component: {fileID: 5790733846364838498}
-  m_Layer: 0
+  - component: {fileID: 6679807928639388810}
+  - component: {fileID: 6135818290467674439}
+  - component: {fileID: -8044936465731705500}
+  m_Layer: 8
   m_Name: TowerAshe
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,41 +105,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
     type: 3}
   firePoint: {fileID: 7987160217894815178}
---- !u!58 &7569104909213401664
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001611626254296797}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!114 &5994649033637264410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a388bbc61054abd468604b311f20099e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7001611626254296797}
+  towerPrefab:
+  - {fileID: 0}
 --- !u!114 &5790733846364838498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +140,72 @@ MonoBehaviour:
     grade: 0
     attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
   statsModifiers: []
+--- !u!114 &6679807928639388810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001611626254296797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fae24a9d017754f8df5e95ccf74fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerTileLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  isClick: 0
+  isSelect: 0
+  level: 1
+--- !u!54 &6135818290467674439
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001611626254296797}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-8044936465731705500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001611626254296797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.91, y: 1.76, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}

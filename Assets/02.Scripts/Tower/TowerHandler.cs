@@ -10,6 +10,8 @@ public class TowerHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask towerTileLayer;
     [SerializeField] private LayerMask towerLayer;
+    private TowerStatsHandler _stats;
+    private TowerStatsHandler _collisionStats;
     private TowerHandler _collisionTowerController;
     private TowerHandler _towerController;
     private TowerTile _baseTowerTile;
@@ -23,7 +25,6 @@ public class TowerHandler : MonoBehaviour
     private RaycastHit _rayHit;
     private Rigidbody _rigidbody;
     private Vector3 currentClosetTilePosition;
-    public int level=1;
 
     private void Awake()
     {
@@ -34,36 +35,12 @@ public class TowerHandler : MonoBehaviour
         _rigidbody = gameObject.GetComponent<Rigidbody>();
         currentClosetTilePosition= transform.position;
         _basePosition = transform.position;
-        _baseTowerTile = GetTowerTile();
+        _stats = GetComponent<TowerStatsHandler>();
     }
 
     private void Update()
     {
         DragAndDrop();
-    }
-
-    private TowerTile GetTowerTile()
-    {
-        TowerTile tile = null;
-        
-        _ray = _camera.ScreenPointToRay(Camera.main.WorldToScreenPoint(_basePosition));
-        Vector3 reversedRayOrigin = _ray.GetPoint(1000f);
-        _ray=new Ray(reversedRayOrigin,_ray.direction);
-        
-        if (Physics.Raycast(_ray, out _rayHit, Mathf.Infinity))
-        {
-            if (_rayHit.transform.CompareTag("TowerTile"))
-            {
-                tile = _rayHit.transform.GetComponent<TowerTile>();
-            }
-            else if (_rayHit.transform.CompareTag("Tower"))
-            {
-                Debug.Log("이거 실화냐");
-
-            }
-
-        }
-        return tile;
     }
 
     //타워 마우스로 잡고 끌어지는 로직
@@ -97,33 +74,37 @@ public class TowerHandler : MonoBehaviour
         if (towerLayer.value == (towerLayer.value | (1 << collision.gameObject.layer)))
         {
             _collisionTowerController = collision.GetComponent<TowerHandler>();
+            _collisionStats = _collisionTowerController.GetComponent<TowerStatsHandler>();
         }
     }
 
     public void UpgradeTower()
     {
         if (_collisionTowerController == null)
+        {
+            _rigidbody.MovePosition(_basePosition);
             return;
-
-        if (_collisionTowerController.level == level)
+        }
+            
+        if (_collisionStats.CurrentStates.grade == _stats.CurrentStates.grade && _collisionStats.CurrentStates.characterType==_stats.CurrentStates.characterType)
         {
             //TODO 만약 합체 가능하면 둘 중 하나를 버리고 그거의 객체의 속성을 올려주고
-            Debug.Log("합체 가능");
+            //Debug.Log("합체 가능");
             _basePosition = _collisionTowerController.transform.position;
             Destroy(_collisionTowerController.gameObject);
             //_baseTowerTile.IsTower = false;
             _collisionTowerController = null;
-            level++;
+            _stats.CurrentStates.grade++;
         }
         else
         {
-            Debug.Log("합체 불가능");
+            //Debug.Log("합체 불가능");
             _rigidbody.MovePosition(_basePosition);
         }
     }
     //마우스 놓인 곳에 해당 타워 설치.
     public void CollcateTower()
     {
-        _rigidbody.MovePosition(currentClosetTilePosition);
+        _rigidbody.MovePosition(_basePosition);
     }
 }

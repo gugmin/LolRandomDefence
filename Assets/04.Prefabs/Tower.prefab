@@ -124,6 +124,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isClick: 0
+  isSelect: 0
+  level: 1
 --- !u!54 &3634336878361723909
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -279,7 +281,7 @@ GameObject:
   - component: {fileID: 7114386416557661058}
   - component: {fileID: 7367918979517235650}
   - component: {fileID: 2828030572940376795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         enemyCount = roundPerSpawn;
 
         //라운드 갱신용 텍스트
-        //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
-        //roundText.text = round.ToString();
+        roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
+        roundText.text = round.ToString();
     }
 }

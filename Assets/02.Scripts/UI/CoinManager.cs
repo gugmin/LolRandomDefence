@@ -13,6 +13,8 @@ public class CoinManager : MonoBehaviour
 
     public Text coinText;
 
+    private GameObject tower;
+
 
     void Update()
     {
@@ -55,21 +57,6 @@ public class CoinManager : MonoBehaviour
     public void SellTower()
     {
         coins += towersell;
-
-        // 타워 판매 로직 추가
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {            
-            //Tower tower = hit.collider.GetComponent<Tower>();
-
-            //if (tower != null)
-            //{
-            //    // 타워 제거
-            //    Destroy(tower.gameObject);                
-            //}
-        }
     }
 
     public void GetCoins()

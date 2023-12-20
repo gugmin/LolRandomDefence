@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public Image nextSprite;
 
 
-    private Text roundText;
     public Text lifeText;
 
     public List<Enemy> enemyList;

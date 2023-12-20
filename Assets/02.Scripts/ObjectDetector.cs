@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class ObjectDetector : MonoBehaviour
     private RaycastHit _rayHit;
 
     private GameObject towerStatusPanel; // 타워 스텟창 띄우기를 위해 선언했습니다.
+    public GameObject clickTower; // 클릭한 타워를 넘겨주기 위해서 선언했습니다.
 
     private void Awake()
     {
@@ -48,11 +50,12 @@ public class ObjectDetector : MonoBehaviour
         // 타워 스텟창 띄우기
         if (Input.GetMouseButtonDown(1))
         {
-            _ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(_ray, out hit) && hit.collider != null && hit.transform.CompareTag("Tower"))
+            if (Physics.Raycast(ray, out hit) && hit.collider != null && hit.transform.CompareTag("Tower"))
             {
-                Debug.Log(hit.transform.gameObject);
+                clickTower = hit.collider.gameObject;
+                towerStatusPanel.SetActive(true);
             }
         }
     }

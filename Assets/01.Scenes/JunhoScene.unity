@@ -10635,13 +10635,16 @@ SpriteRenderer:
   m_Script: {fileID: 11500000, guid: 671fc86be863c4f43b0c4c92cf3f93c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryPanel: {fileID: 0}
+  defeatPanel: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: b16825e03871f194e823f78757e3ee43, type: 2}
-  enemy1: {fileID: 4578147461625044031, guid: 9b99bbe09988c494f983cc2493996296, type: 3}
+  enemy1: {fileID: 4578147461625044031, guid: 2d1b4d4fb7a405140a08595ac899f816, type: 3}
   spawnPoint: {fileID: 1668595856}
   round: 0
   roundPerSpawn: 15
   spawnInterval: 0.7
   enemyCount: 0
+  enemyList: []
 --- !u!4 &238386320
 Transform:
   m_ObjectHideFlags: 0
@@ -12740,8 +12743,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a388bbc61054abd468604b311f20099e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 8686571155329869293, guid: ee9950e3a6b698c4583c707a4db6acb5,
-    type: 3}
+  towerPrefab:
+  - {fileID: 7001611626254296797, guid: 5a7b824da5b9a054688bfcb7daa0ab59, type: 3}
+  - {fileID: 9080055482775391771, guid: 7f30ffe7afdd6e14686860a3f0b94ee9, type: 3}
+  - {fileID: 8864527979986555417, guid: c29f72351a5ed1d4d93eb2f27ff25f73, type: 3}
+  - {fileID: 8686571155329869293, guid: ee9950e3a6b698c4583c707a4db6acb5, type: 3}
+  - {fileID: 6944898690774611825, guid: 40d3beb0e78ad504b8f5756435f6cb3f, type: 3}
+  - {fileID: 244518504503501716, guid: 1575eba09c1b66a4c846239cb47fd72e, type: 3}
 --- !u!4 &1487364521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4758643165141579708, guid: 2aa01b2fea191e9419309e387865658b,

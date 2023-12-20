@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 3697115938059517415}
   - component: {fileID: 6183349855692663395}
   - component: {fileID: 2325955779621717642}
-  - component: {fileID: 181017530925253520}
-  - component: {fileID: 6495563694885090067}
-  m_Layer: 0
+  - component: {fileID: -5613619201746599282}
+  - component: {fileID: -1242216533312658552}
+  - component: {fileID: -6014069234037090189}
+  - component: {fileID: -5237752594585619943}
+  m_Layer: 9
   m_Name: TowerZed
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,15 +104,41 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2829539108188351339, guid: 187050aae34df7f48be391945c081ab6,
     type: 3}
   firePoint: {fileID: 3697115938059517415}
---- !u!58 &181017530925253520
-CircleCollider2D:
+  attackData: {fileID: 11400000, guid: 9cd25d2f21b0e6e42b150acb0d8ef716, type: 2}
+--- !u!54 &-5613619201746599282
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244518504503501716}
-  m_Enabled: 1
-  m_Density: 1
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-1242216533312658552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244518504503501716}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -119,25 +147,33 @@ CircleCollider2D:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
---- !u!114 &6495563694885090067
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8, y: 1.63, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6014069234037090189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244518504503501716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fae24a9d017754f8df5e95ccf74fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerTileLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  isClick: 0
+  isSelect: 0
+--- !u!114 &-5237752594585619943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,10 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseStats:
     statsChangeType: 0
-    power: 1
-    size: 1
-    attackRange: 1
-    delay: 1
+    characterType: 0
+    power: 0
+    size: 0
+    attackRange: 0
+    delay: 0
     grade: 0
-    attackSO: {fileID: 11400000, guid: 587299b74f7bfb24daab87843ce2f1ad, type: 2}
+    attackSO: {fileID: 11400000, guid: 9cd25d2f21b0e6e42b150acb0d8ef716, type: 2}
   statsModifiers: []

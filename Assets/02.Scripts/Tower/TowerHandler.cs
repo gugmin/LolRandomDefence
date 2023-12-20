@@ -10,10 +10,12 @@ public class TowerHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask towerTileLayer;
     [SerializeField] private LayerMask towerLayer;
+    private TowerStatsHandler _stats;
+    private TowerStatsHandler _collisionStats;
     private TowerHandler _collisionTowerController;
     private TowerHandler _towerController;
     private TowerTile _baseTowerTile;
-    private Vector3 _basePosition;
+    private Vector3 _basePosition;    
 
     public bool isClick = false;
     public bool isSelect = false;
@@ -23,18 +25,17 @@ public class TowerHandler : MonoBehaviour
     private RaycastHit _rayHit;
     private Rigidbody _rigidbody;
     private Vector3 currentClosetTilePosition;
-    public int level=1;
 
     private void Awake()
     {
-        _camera = Camera.main;
+        _camera = Camera.main;        
     }
     private void Start()
     {
         _rigidbody = gameObject.GetComponent<Rigidbody>();
         currentClosetTilePosition= transform.position;
         _basePosition = transform.position;
-        _baseTowerTile = GetTowerTile();
+        _stats = GetComponent<TowerStatsHandler>();
     }
 
     private void Update()
@@ -42,31 +43,7 @@ public class TowerHandler : MonoBehaviour
         DragAndDrop();
     }
 
-    private TowerTile GetTowerTile()
-    {
-        TowerTile tile = null;
-        
-        _ray = _camera.ScreenPointToRay(Camera.main.WorldToScreenPoint(_basePosition));
-        Vector3 reversedRayOrigin = _ray.GetPoint(1000f);
-        _ray=new Ray(reversedRayOrigin,_ray.direction);
-        
-        if (Physics.Raycast(_ray, out _rayHit, Mathf.Infinity))
-        {
-            if (_rayHit.transform.CompareTag("TowerTile"))
-            {
-                tile = _rayHit.transform.GetComponent<TowerTile>();
-            }
-            else if (_rayHit.transform.CompareTag("Tower"))
-            {
-                Debug.Log("ÀÌ°Å ½ÇÈ­³Ä");
-
-            }
-
-        }
-        return tile;
-    }
-
-    //Å¸¿ö ¸¶¿ì½º·Î Àâ°í ²ø¾îÁö´Â ·ÎÁ÷
+    //Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void DragAndDrop()
     {
         Vector3 offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -76,7 +53,7 @@ public class TowerHandler : MonoBehaviour
             _rigidbody.MovePosition(new Vector3(mousePosition.x, mousePosition.y, 0));
         }
     }
-    //Å¸¿ö¿Í Å¸¿ö¹èÄ¡ Å¸ÀÏ°úÀÇ Ãæµ¹
+    //Å¸ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½Ä¡ Å¸ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½æµ¹
     private void OnTriggerStay(Collider collision)  
     {
         if (towerTileLayer.value == (towerTileLayer.value | (1 << collision.gameObject.layer)))
@@ -87,7 +64,7 @@ public class TowerHandler : MonoBehaviour
             }
         }
     }
-    //Å¸¿ö³¢¸® Ãæµ¹
+    //Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹
     private void OnTriggerEnter(Collider collision) 
     {
         if (!isSelect)
@@ -97,33 +74,37 @@ public class TowerHandler : MonoBehaviour
         if (towerLayer.value == (towerLayer.value | (1 << collision.gameObject.layer)))
         {
             _collisionTowerController = collision.GetComponent<TowerHandler>();
+            _collisionStats = _collisionTowerController.GetComponent<TowerStatsHandler>();
         }
     }
 
     public void UpgradeTower()
     {
         if (_collisionTowerController == null)
-            return;
-
-        if (_collisionTowerController.level == level)
         {
-            //TODO ¸¸¾à ÇÕÃ¼ °¡´ÉÇÏ¸é µÑ Áß ÇÏ³ª¸¦ ¹ö¸®°í ±×°ÅÀÇ °´Ã¼ÀÇ ¼Ó¼ºÀ» ¿Ã·ÁÁÖ°í
-            Debug.Log("ÇÕÃ¼ °¡´É");
+            _rigidbody.MovePosition(_basePosition);
+            return;
+        }
+            
+        if (_collisionStats.CurrentStates.grade == _stats.CurrentStates.grade && _collisionStats.CurrentStates.characterType==_stats.CurrentStates.characterType)
+        {
+            //TODO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ö°ï¿½
+            //Debug.Log("ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½");
             _basePosition = _collisionTowerController.transform.position;
             Destroy(_collisionTowerController.gameObject);
             //_baseTowerTile.IsTower = false;
             _collisionTowerController = null;
-            level++;
+            _stats.CurrentStates.grade++;
         }
         else
         {
-            Debug.Log("ÇÕÃ¼ ºÒ°¡´É");
+            //Debug.Log("ï¿½ï¿½Ã¼ ï¿½Ò°ï¿½ï¿½ï¿½");
             _rigidbody.MovePosition(_basePosition);
         }
     }
-    //¸¶¿ì½º ³õÀÎ °÷¿¡ ÇØ´ç Å¸¿ö ¼³Ä¡.
+    //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡.
     public void CollcateTower()
     {
-        _rigidbody.MovePosition(currentClosetTilePosition);
+        _rigidbody.MovePosition(_basePosition);
     }
 }

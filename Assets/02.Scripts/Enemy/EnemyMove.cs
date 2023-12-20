@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -40,11 +41,36 @@ public class EnemyMove : MonoBehaviour
                 collCount = 0;
             }
         }
+        else if (collision.collider.CompareTag("EndLine"))
+        {
+            GameManager.instance.DestroyEnemy(gameObject.GetComponent<Enemy>());
+            if(GameManager.instance.round % 5 == 0)
+            {
+                GameManager.instance.playerLife -= 5;
+            }
+            else if(GameManager.instance.round == 16 ||
+                        GameManager.instance.round == 17 ||
+                        GameManager.instance.round == 18 ||
+                        GameManager.instance.round == 19)
+            {
+                GameManager.instance.playerLife -= 3;
+            }
+            else
+            {
+                GameManager.instance.playerLife -= 1;
+            }
+            Destroy(gameObject);
+            
+            if (GameManager.instance.playerLife == 0)
+            {
+                GameManager.instance.GameOver();
+            }
+        }
     }
 
     void Move()
     {
-        _rigidbody2D.velocity = dirVec * GameManager.instance.enemyStats.enemySpeed;
+        _rigidbody2D.velocity = dirVec * 3;
     }
 }
 

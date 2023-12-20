@@ -9,7 +9,5 @@ public class EnemyStats : ScriptableObject
 {
     [Header("Enemy")]
     public float enemyHealth;
-    public int enemySpeed;
     public Sprite enemySprite;
-    public bool isDead;
 }

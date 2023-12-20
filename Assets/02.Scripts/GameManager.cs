@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //½Ì±ÛÅæ
     public static GameManager instance;
+    public CoinManager CoinManager;
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
 
-    //Àû±¸Çö ¿ä¼Ò
-    public EnemyStats enemyStats;
-    //TODO Àû ¼öÁ¤
-    public GameObject enemy1;
+    public EnemyStats[] enemyStats;
+
+    public GameObject enemy;
     [SerializeField] private Transform spawnPoint;
 
-    //¶ó¿îµå ÁøÇà¿ä¼Ò
+
     public int round;
     public int roundPerSpawn;
     public float spawnInterval;
     public int enemyCount;
-    
-    //¶ó¿îµå °»½Å¿ë ÅØ½ºÆ®
+    public int playerLife;
+
+    private float playTime;
+    private int clearedRounds;
+    private int monstersKilled;
+    private int totalCoinsEarned;
+
+
     private Text roundText;
+
+    public List<Enemy> enemyList;
 
     void Awake()
     {
@@ -33,6 +43,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //ì  ìƒì„± ë¦¬ìŠ¤íŠ¸
+        enemyList = new List<Enemy>();
     }
 
     void Start()
@@ -47,22 +59,109 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < roundPerSpawn; i++)
         {
-            GameObject enemy = Instantiate(enemy1);
-            enemy.transform.parent = spawnPoint;
+            GameObject _enemy = Instantiate(enemy);
+            enemyList.Add(_enemy.GetComponent<Enemy>());
+            _enemy.transform.parent = spawnPoint;
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
+    public void DestroyEnemy(Enemy enemy)
+    {
+        enemyList.Remove(enemy);
+        Destroy(enemy.gameObject);
+    }
     void RoundClear()
     {
-        //TODO Å¬¸®¾î ¸Ş¼¼Áö Ãâ·Â
-        //ÁøÇà ¶ó¿îµå ¸Ş¼¼Áö Ãâ·Â
+
         round++;
-        roundPerSpawn += 5;
+        if (round == 5)
+        {
+            roundPerSpawn = 10;
+        }
+        else if (round == 15)
+        {
+            roundPerSpawn = 2;
+        }
+        else if (round == 16 || round == 17 || round == 18 || round == 19)
+        {
+
+        }
+        else if (round == 20)
+        {
+            roundPerSpawn = 1;
+        }
+        else
+        roundPerSpawn = 20;
+
         enemyCount = roundPerSpawn;
 
-        //¶ó¿îµå °»½Å¿ë ÅØ½ºÆ®
-        roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
-        roundText.text = round.ToString();
+
+        //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
+        //roundText.text = round.ToString();
+    }
+
+
+    public void MonsterKilled()
+    {
+        monstersKilled++;        
+    }
+
+
+    public void RoundCleared()
+    {
+        clearedRounds++;        
+    }
+
+
+    public void EarnCoins(int amount)
+    {
+        totalCoinsEarned += amount;        
+    }
+
+    void ActivateVictoryPanel()
+    {
+        victoryPanel.SetActive(true);        
+    }
+    
+    public void ActivateDefeatPanel()
+    {
+        defeatPanel.SetActive(true);        
+    }
+
+    public void GameOver()
+    {        
+        playTime = Time.time;
+
+
+
+        //if (playerWon)
+        //{
+        //    ActivateVictoryPanel();
+        //}
+        //else
+        //{
+        //    ActivateDefeatPanel();
+        //}
+    }
+
+
+    public float GetPlayTime()
+    {
+        return playTime;
+    }
+
+    public int GetClearedRounds()
+    {
+        return clearedRounds;
+    }
+
+    public int GetMonstersKilled()
+    {
+        return monstersKilled;
+    }
+
+    public int GetTotalCoinsEarned()
+    {
+        return totalCoinsEarned;
     }
 }

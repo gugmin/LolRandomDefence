@@ -23,12 +23,14 @@ public class Condition
 
 public class Enemy : MonoBehaviour
 {
+    private List<Enemy> _enemyList;
     public Condition health;
 
     private void Start()
     {
         health.maxValue = GameManager.instance.enemyStats.enemyHealth;
         health.curValue = health.maxValue;
+        _enemyList = GameManager.instance.enemyList;
     }
 
     private void Update()
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
         {
             GameManager.instance.StartCoroutine("StartRound");
         }
+        _enemyList.Remove(this.transform.GetComponent<Enemy>());
         Destroy(gameObject);
         //gameObject.SetActive(false);
     }

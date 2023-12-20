@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 7987160217894815178}
   - component: {fileID: 5104127011819820680}
   - component: {fileID: 8269401827951978352}
-  - component: {fileID: 5994649033637264410}
   - component: {fileID: 5790733846364838498}
   - component: {fileID: 6679807928639388810}
   - component: {fileID: 6135818290467674439}
   - component: {fileID: -8044936465731705500}
+  - component: {fileID: 1131495686316916242}
   m_Layer: 8
   m_Name: TowerAshe
   m_TagString: Tower
@@ -34,9 +34,10 @@ Transform:
   m_LocalPosition: {x: -4.48, y: 2.49, z: 0}
   m_LocalScale: {x: 0.8, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1601582880124706170}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5104127011819820680
 SpriteRenderer:
@@ -105,20 +106,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
     type: 3}
   firePoint: {fileID: 7987160217894815178}
---- !u!114 &5994649033637264410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001611626254296797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a388bbc61054abd468604b311f20099e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerPrefab:
-  - {fileID: 0}
 --- !u!114 &5790733846364838498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseStats:
     statsChangeType: 0
+    characterType: 0
     power: 0
     size: 0
     attackRange: 0
@@ -160,7 +148,6 @@ MonoBehaviour:
     m_Bits: 256
   isClick: 0
   isSelect: 0
-  level: 1
 --- !u!54 &6135818290467674439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,3 +196,51 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.91, y: 1.76, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1131495686316916242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001611626254296797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8124680529377282353, guid: 1e02b50cfa7daa945b47f10bd4c11117,
+    type: 3}
+  spawnPoint: {fileID: 1601582880124706170}
+  delay: 0.5
+  range: 10
+--- !u!1 &8239790494498470388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601582880124706170}
+  m_Layer: 8
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1601582880124706170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239790494498470388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7987160217894815178}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

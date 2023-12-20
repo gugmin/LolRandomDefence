@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     //라운드 갱신용 텍스트
     private Text roundText;
 
+    public List<Enemy> enemyList;
+
     void Awake()
     {
         if (instance == null)
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        enemyList = new List<Enemy>();
     }
 
     void Start()
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < roundPerSpawn; i++)
         {
             GameObject enemy = Instantiate(enemy1);
+            enemyList.Add(enemy.GetComponent<Enemy>());
             enemy.transform.parent = spawnPoint;
             yield return new WaitForSeconds(spawnInterval);
         }

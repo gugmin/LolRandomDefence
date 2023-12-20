@@ -2,25 +2,31 @@ using System.Collections.Generic;
 using UnityEngine;
 public class TowerStatsHandler : MonoBehaviour
 {
-    [SerializeField] private TowerStats _baseStats;
+    [SerializeField] private List<TowerStats> levelStates;
     public TowerStats CurrentStates { get; private set; }
-    public List<TowerStats> statsModifiers = new List<TowerStats>();
+    [SerializeField] private TowerStats _baseStats;
+
+
     private void Awake()
     {
-        UpdateTowerStats();
+        SetTowerStats();
     }
-    private void UpdateTowerStats()
+
+    private void SetTowerStats()
     {
-        AttackSO attackSO = null;
-        if (_baseStats.attackSO != null)
-        {
-            attackSO = Instantiate(_baseStats.attackSO);
-        }
-        CurrentStates = new TowerStats { attackSO = attackSO };
+        CurrentStates = new TowerStats();
+
         CurrentStates.grade = _baseStats.grade;
         CurrentStates.power = _baseStats.power;
         CurrentStates.attackRange = _baseStats.attackRange;
         CurrentStates.delay = _baseStats.delay;
-        CurrentStates.statsChangeType = _baseStats.statsChangeType;
+    }
+    public void LevelUp()
+    {
+        if(CurrentStates.grade<levelStates.Count)
+        {
+            CurrentStates = levelStates[CurrentStates.grade];
+            //여기서 등급표시도 해주기
+        }
     }
 }

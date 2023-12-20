@@ -184,7 +184,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.59, y: 1.58, z: 0.2}
+  m_Size: {x: 1.1, y: 1.5, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-603368988856106496
 MonoBehaviour:
@@ -218,16 +218,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642fbd13f107ea746a59c64ebb8e3ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelStates:
+  - characterType: 0
+    power: 60
+    size: 1
+    attackRange: 8
+    delay: 0.6
+    grade: 1
+  - characterType: 0
+    power: 90
+    size: 1
+    attackRange: 10
+    delay: 0.5
+    grade: 2
   _baseStats:
-    statsChangeType: 0
     characterType: 0
-    power: 50
-    size: 0
-    attackRange: 0
-    delay: 0
+    power: 30
+    size: 1
+    attackRange: 5
+    delay: 0.8
     grade: 0
-    attackSO: {fileID: 11400000, guid: a417b40f745f0184385649f1d0825c3d, type: 2}
-  statsModifiers: []
 --- !u!114 &8514673829827460534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,5 +253,3 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5825052839371152599, guid: 3da32a9d219cab5469498dd12d742b0f,
     type: 3}
   spawnPoint: {fileID: 5186875705815246575}
-  delay: 0.5
-  range: 10

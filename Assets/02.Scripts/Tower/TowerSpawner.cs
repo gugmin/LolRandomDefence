@@ -12,8 +12,12 @@ public class TowerSpawner : MonoBehaviour
     {
         TowerTile tile = tileTransform.GetComponent<TowerTile>();
         int randomIdx=Random.Range(0,6);
+        
+        if(!tile.IsTower)
+        {
+            tile.IsTower = true;
+            GameObject tower = Instantiate(towerPrefab[randomIdx], tileTransform.position, Quaternion.identity);
+        }
 
-        GameObject tower = Instantiate(towerPrefab[randomIdx], tileTransform.position, Quaternion.identity);
-        tower.GetComponent<TowerStatsHandler>().CurrentStates.characterType = (CharacterType)randomIdx;
     }
 }

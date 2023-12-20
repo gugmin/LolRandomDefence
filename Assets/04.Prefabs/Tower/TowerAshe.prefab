@@ -180,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7987160217894815178}
   - component: {fileID: 5104127011819820680}
-  - component: {fileID: 8269401827951978352}
   - component: {fileID: -777979645874306068}
   - component: {fileID: 8973885699591728212}
   - component: {fileID: 4184078492848235645}
@@ -207,7 +206,7 @@ Transform:
   m_Children:
   - {fileID: 9142871813640515030}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5104127011819820680
 SpriteRenderer:
@@ -261,22 +260,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8269401827951978352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001611626254296797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5565696e5f13252418c04bc740351e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
-    type: 3}
-  firePoint: {fileID: 7987160217894815178}
-  attackData: {fileID: 11400000, guid: 9ca43f67b5721554e9b25ebea88ff333, type: 2}
 --- !u!54 &-777979645874306068
 Rigidbody:
   m_ObjectHideFlags: 0

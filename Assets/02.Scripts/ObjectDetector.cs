@@ -23,6 +23,8 @@ public class ObjectDetector : MonoBehaviour
     private RaycastHit _rayHit;
     private bool isSpawn = false;
 
+    [SerializeField] private TowerStatusPanel towerStatusPanel; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -48,15 +50,15 @@ public class ObjectDetector : MonoBehaviour
     {
         _actionType=ActionType.Upgrade;
     }
-    //¸¶¿ì½º ´­¸®´ÂÁö È®ÀÎ
+    //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     private void CheckMouseClick()
     {
-        //¸¶¿ì½º ´­¸®¸é OnClickÇÔ¼ö ½ÇÇà
+        //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ OnClickï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         if(Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
-        //¸¶¿ì½º°¡ ¶§Á³À» ¶§ ·ÎÁ÷
+        //ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if(Input.GetMouseButtonUp(0))
         {
             if(_towerController!= null)
@@ -67,12 +69,22 @@ public class ObjectDetector : MonoBehaviour
                 _towerController.CollcateTower();
             }
         }
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
+        if (Input.GetMouseButtonDown(1))
+        {
+            _ray = _camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(_ray, out hit, Mathf.Infinity) && hit.transform.CompareTag("Tower"))
+            {
+                towerStatusPanel.SetTowerStatusHandler(hit.transform);
+            }
+        }
     }
     private void OnClick()
     {
         TowerTileDetector();
     }
-    //Å¸¿ö¸¦ ¼³Ä¡ÇØµµ µÇ´Â Å¸ÀÏÀÎÁö ¿©ºÎ È®ÀÎÇÏ´Â ÇÔ¼ö
+    //Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Øµï¿½ ï¿½Ç´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     private void TowerTileDetector()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -84,8 +96,8 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        //ÆÇ³Ú¶ç¾îÁÖ¸é ÁÁÀ» °Å °°À½ ÄÚÀÎ¸Å´ÏÀú¿¡ ¿¬°áÇØ¼­ ¶ç¿ì¸é ÁÁÀ» °Å °°À½.
-                        Debug.Log("¾÷±×·¹ÀÌµå ÁßÀÔ´Ï´Ù Å¸¿ö¸¦ ¼±ÅÃÇØ¶ó");
+                        //ï¿½Ç³Ú¶ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+                        Debug.Log("ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½");
                         break;
                     case ActionType.Spawn:
                         if(_coinManager.BuyTower())
@@ -99,8 +111,8 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        Debug.Log("Å¸¿ö ¾÷±Û ·ÎÁ÷");
-                        //Å¸¿ö ÇÏ³ª °¡Á®¿À°í ¸ÂÀ¸¸é µÎ°³ ÇÕÄ¡°í  ---> ·¹º§¾÷?
+                        Debug.Log("Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+                        //Å¸ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½  ---> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
 
                         upgradeTower.Add(_rayHit.transform.GetComponent<TowerStatsHandler>());
                         
@@ -108,8 +120,8 @@ public class ObjectDetector : MonoBehaviour
                         {
                             if (upgradeTower[0].CurrentStates.grade == upgradeTower[1].CurrentStates.grade && upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
                             {
-                                //ÇÏ³ª ¹ö¸®°í collision À§Ä¡·Î ÀÌµ¿
-                                Debug.Log("ÇÕÃ¼ ÁøÇà½ÃÄÑ" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
+                                //ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ collision ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
+                                Debug.Log("ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
                                 upgradeTower[0].transform.position = upgradeTower[1].transform.position;
                                 Destroy(upgradeTower[1].gameObject);
                                 upgradeTower[0].LevelUp();
@@ -117,7 +129,7 @@ public class ObjectDetector : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("ÇÕÃ¼ ±âÁØ ºÒÇÕ°Ý");
+                                Debug.Log("ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Õ°ï¿½");
                             }
                             upgradeTower.Clear();
                         }

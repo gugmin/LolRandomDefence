@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //½Ì±ÛÅæ
+    //ï¿½Ì±ï¿½ï¿½ï¿½
     public static GameManager instance;
     public CoinManager CoinManager;
     public GameObject victoryPanel;
     public GameObject defeatPanel;
-    //Àû±¸Çö ¿ä¼Ò
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     public EnemyStats[] enemyStats;
-    //TODO Àû ¼öÁ¤
+    //TODO ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject enemy;
     [SerializeField] private Transform spawnPoint;
 
-    //¶ó¿îµå ÁøÇà¿ä¼Ò
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int round;
     public int roundPerSpawn;
     public float spawnInterval;
@@ -29,8 +29,10 @@ public class GameManager : MonoBehaviour
     private int monstersKilled;
     private int totalCoinsEarned;
 
-    //¶ó¿îµå °»½Å¿ë ÅØ½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å¿ï¿½ ï¿½Ø½ï¿½Æ®
     private Text roundText;
+
+    public List<Enemy> enemyList;
 
     void Awake()
     {
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        enemyList = new List<Enemy>();
     }
 
     void Start()
@@ -56,16 +59,17 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < roundPerSpawn; i++)
         {
-            GameObject _enemy = Instantiate(enemy);
-            _enemy.transform.parent = spawnPoint;
+            GameObject enemy = Instantiate(enemy1);
+            enemyList.Add(enemy.GetComponent<Enemy>());
+            enemy.transform.parent = spawnPoint;
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
     void RoundClear()
     {
-        //TODO Å¬¸®¾î ¸Þ¼¼Áö Ãâ·Â
-        //ÁøÇà ¶ó¿îµå ¸Þ¼¼Áö Ãâ·Â
+        //TODO Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         round++;
         if (round == 5)
         {
@@ -88,24 +92,24 @@ public class GameManager : MonoBehaviour
 
         enemyCount = roundPerSpawn;
 
-        //¶ó¿îµå °»½Å¿ë ÅØ½ºÆ®
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å¿ï¿½ ï¿½Ø½ï¿½Æ®
         //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
         //roundText.text = round.ToString();
     }
 
-    // ¸ó½ºÅÍ¸¦ Ã³Ä¡ÇßÀ» ¶§ È£ÃâµÇ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½Í¸ï¿½ Ã³Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void MonsterKilled()
     {
         monstersKilled++;        
     }
 
-    // ¶ó¿îµå°¡ Å¬¸®¾îµÇ¾úÀ» ¶§ È£ÃâµÇ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½å°¡ Å¬ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void RoundCleared()
     {
         clearedRounds++;        
     }
 
-    // ÄÚÀÎÀ» ¾ò¾úÀ» ¶§ È£ÃâµÇ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void EarnCoins(int amount)
     {
         totalCoinsEarned += amount;        
@@ -125,7 +129,7 @@ public class GameManager : MonoBehaviour
     {        
         playTime = Time.time;
 
-        // Å¬¸®¾îÇÑ ¶ó¿îµå, ¸ó½ºÅÍ Ã³Ä¡ ¼ö, ÃÑ È¹µæÇÑ ÄÚÀÎ µîÀ» ¿©±â¼­ °»½Å
+        // Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ Ã³Ä¡ ï¿½ï¿½, ï¿½ï¿½ È¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½
 
         //if (playerWon)
         //{
@@ -137,7 +141,7 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    // Getter ¸Þ¼­µåµé
+    // Getter ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½
     public float GetPlayTime()
     {
         return playTime;

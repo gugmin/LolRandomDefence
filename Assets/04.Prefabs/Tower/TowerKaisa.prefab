@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7346703273520508457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3221114234713642635}
+  m_Layer: 9
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3221114234713642635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346703273520508457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8672120540773695119}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8864527979986555417
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +46,7 @@ GameObject:
   - component: {fileID: -4472606111704726870}
   - component: {fileID: 4445532824038960347}
   - component: {fileID: -6788401910285979281}
+  - component: {fileID: 6882039865937914095}
   m_Layer: 9
   m_Name: TowerKaisa
   m_TagString: Tower
@@ -33,9 +65,10 @@ Transform:
   m_LocalPosition: {x: -2.43, y: 3.49, z: 0}
   m_LocalScale: {x: 0.23432, y: 0.2796, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3221114234713642635}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5320205809879296753
 SpriteRenderer:
@@ -188,10 +221,27 @@ MonoBehaviour:
   _baseStats:
     statsChangeType: 0
     characterType: 0
-    power: 0
+    power: 50
     size: 0
     attackRange: 0
     delay: 0
     grade: 0
     attackSO: {fileID: 11400000, guid: f5b3fd4fd8203774e947a71af11e47b4, type: 2}
   statsModifiers: []
+--- !u!114 &6882039865937914095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8864527979986555417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5256284846579992118, guid: 386532ca46d02444badc7fb8b3f10979,
+    type: 3}
+  spawnPoint: {fileID: 3221114234713642635}
+  delay: 0.5
+  range: 10

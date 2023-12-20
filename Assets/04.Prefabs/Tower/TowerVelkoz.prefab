@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4335549163134916089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706986904604921798}
+  m_Layer: 9
+  m_Name: ProjectileSPawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &706986904604921798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335549163134916089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09, y: -0.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8151058546406176577}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6944898690774611825
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +46,7 @@ GameObject:
   - component: {fileID: 9100516566814890666}
   - component: {fileID: -6217242235152153426}
   - component: {fileID: -4073670216901255674}
+  - component: {fileID: 2707939130757329786}
   m_Layer: 9
   m_Name: TowerVelkoz
   m_TagString: Tower
@@ -33,9 +65,10 @@ Transform:
   m_LocalPosition: {x: -5.49, y: 2.52, z: 0}
   m_LocalScale: {x: 0.8, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 706986904604921798}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8791827291264079183
 SpriteRenderer:
@@ -188,10 +221,27 @@ MonoBehaviour:
   _baseStats:
     statsChangeType: 0
     characterType: 0
-    power: 0
+    power: 50
     size: 0
     attackRange: 0
     delay: 0
     grade: 0
     attackSO: {fileID: 11400000, guid: 0c46270610747664e9ff29e1bb7b6b33, type: 2}
   statsModifiers: []
+--- !u!114 &2707939130757329786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944898690774611825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1951312948174895002, guid: d36758aa37772b8449d7ab4aac870ebb,
+    type: 3}
+  spawnPoint: {fileID: 706986904604921798}
+  delay: 0.5
+  range: 10

@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4c3a8a9e11e8f4eaf40fd8260fec45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3908445558340319846, guid: 3f81ca4756acea6489ab62eb5befc008,
+  projectilePrefab: {fileID: 8081411118816456245, guid: 443d87bd025f52a4daae98b4295b28da,
     type: 3}
   spawnPoint: {fileID: 9142871813640515030}
   delay: 0.5

@@ -43,6 +43,7 @@ public class EnemyMove : MonoBehaviour
         }
         else if (collision.collider.CompareTag("EndLine"))
         {
+            GameManager.instance.enemyCount--;
             GameManager.instance.DestroyEnemy(gameObject.GetComponent<Enemy>());
             if(GameManager.instance.round % 5 == 0)
             {
@@ -64,6 +65,10 @@ public class EnemyMove : MonoBehaviour
             if (GameManager.instance.playerLife == 0)
             {
                 GameManager.instance.GameOver();
+            }
+            else if (GameManager.instance.enemyCount == 0)
+            {
+                GameManager.instance.StartCoroutine("StartRound");
             }
         }
     }

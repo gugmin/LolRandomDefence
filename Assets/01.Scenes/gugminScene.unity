@@ -17132,6 +17132,8 @@ MonoBehaviour:
   spawnInterval: 0.4
   enemyCount: 0
   playerLife: 30
+  currentSprite: {fileID: 1648336941}
+  nextSprite: {fileID: 1896535617}
   enemyList: []
 --- !u!4 &1921739319
 Transform:

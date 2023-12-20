@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
 {
     //싱글톤
     public static GameManager instance;
+    public CoinManager CoinManager;
     public GameObject victoryPanel;
     public GameObject defeatPanel;
     //적구현 요소
-    public EnemyStats enemyStats;
+    public EnemyStats[] enemyStats;
     //TODO 적 수정
-    public GameObject enemy1;
+    public GameObject enemy;
     [SerializeField] private Transform spawnPoint;
 
     //라운드 진행요소
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int roundPerSpawn;
     public float spawnInterval;
     public int enemyCount;
+    public int playerLife;
 
     private float playTime;
     private int clearedRounds;
@@ -54,8 +56,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < roundPerSpawn; i++)
         {
-            GameObject enemy = Instantiate(enemy1);
-            enemy.transform.parent = spawnPoint;
+            GameObject _enemy = Instantiate(enemy);
+            _enemy.transform.parent = spawnPoint;
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -65,7 +67,25 @@ public class GameManager : MonoBehaviour
         //TODO 클리어 메세지 출력
         //진행 라운드 메세지 출력
         round++;
-        roundPerSpawn += 5;
+        if (round == 5)
+        {
+            roundPerSpawn = 10;
+        }
+        else if (round == 15)
+        {
+            roundPerSpawn = 2;
+        }
+        else if (round == 16 || round == 17 || round == 18 || round == 19)
+        {
+
+        }
+        else if (round == 20)
+        {
+            roundPerSpawn = 1;
+        }
+        else
+        roundPerSpawn = 20;
+
         enemyCount = roundPerSpawn;
 
         //라운드 갱신용 텍스트

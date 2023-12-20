@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public static CoinManager instance;
-
     public int coins; // 현재 보유 중인 코인 수
     public int towerbuy; // 타워 구매 가격
     public int towersell; // 타워 판매 가격
-    public int towerupgrade; // 업그레이드의 가격
-    public int coinOnKil; // 몬스터 킬 보상
+    //public int towerupgrade; // 업그레이드의 가격
 
     public GameObject notEnoughCoinsPanel; // 코인 부족 시 보여줄 패널
 
     public Text coinText;
+
 
     void Update()
     {

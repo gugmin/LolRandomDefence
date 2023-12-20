@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 
@@ -23,12 +24,19 @@ public class Condition
 public class Enemy : MonoBehaviour
 {
     public Condition health;
+    public SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     private void Start()
     {
-        health.maxValue = GameManager.instance.enemyStats.enemyHealth;
+        health.maxValue = GameManager.instance.enemyStats[GameManager.instance.round - 1].enemyHealth;
+        spriteRenderer.sprite = GameManager.instance.enemyStats[GameManager.instance.round - 1].enemySprite;
         health.curValue = health.maxValue;
     }
+
     void Update()
     {
         health.curValue -= Time.deltaTime;
@@ -56,8 +64,7 @@ public class Enemy : MonoBehaviour
     void EnemyDie()
     {
         GameManager.instance.enemyCount--;
-        GameManager.instance.enemyStats.isDead = true;
-        CoinManager.instance.GetCoins();
+        GameManager.instance.CoinManager.GetCoins();
         //라운드에 모든 적이 죽었을때
         if (GameManager.instance.enemyCount == 0)
         {

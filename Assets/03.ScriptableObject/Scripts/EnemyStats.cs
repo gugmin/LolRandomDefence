@@ -8,6 +8,5 @@ public class EnemyStats : ScriptableObject
 {
     [Header("Enemy")]
     public float enemyHealth;
-    public Sprite enemySprite; 
-    public bool isDead;
+    public Sprite enemySprite;
 }

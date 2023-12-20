@@ -6549,8 +6549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671fc86be863c4f43b0c4c92cf3f93c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryPanel: {fileID: 0}
+  defeatPanel: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: b16825e03871f194e823f78757e3ee43, type: 2}
-  enemy1: {fileID: 4578147461625044031, guid: 9b99bbe09988c494f983cc2493996296, type: 3}
+  enemy1: {fileID: 4578147461625044031, guid: 2d1b4d4fb7a405140a08595ac899f816, type: 3}
   spawnPoint: {fileID: 1668595856}
   round: 0
   roundPerSpawn: 15

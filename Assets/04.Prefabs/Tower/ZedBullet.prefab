@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3353145054963291735}
   - component: {fileID: 7467799462410847715}
   - component: {fileID: 3745421338474187983}
-  - component: {fileID: 5958805910858686400}
+  - component: {fileID: -2862817369373399617}
+  - component: {fileID: -1446883284993058462}
   m_Layer: 0
   m_Name: ZedBullet
   m_TagString: Untagged
@@ -149,7 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.47
---- !u!114 &5958805910858686400
+--- !u!114 &-2862817369373399617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +159,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2829539108188351339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2863795faab3249b0dca5a22478606, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a275522359347409a2ce8b395614e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+--- !u!114 &-1446883284993058462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829539108188351339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57c1f496b27545409edc2b00f39dcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 15
+  moveDirection: {x: 0, y: 0, z: 0}

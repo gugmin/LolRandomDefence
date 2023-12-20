@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
             roundPerSpawn = 1;
         }
         else
-        roundPerSpawn = 20;
+            roundPerSpawn = 20;
 
         enemyCount = roundPerSpawn;
     }
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         victoryPanel.SetActive(true);
     }
-    
+
     public void ActivateDefeatPanel()
     {
         defeatPanel.SetActive(true);
@@ -143,12 +143,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         playTime = Time.time;
-        
+
         if (playerLife <= 0)
         {
             defeatPanel.SetActive(true);
         }
-        
+
         if (round == 21)
         {
             victoryPanel.SetActive(true);

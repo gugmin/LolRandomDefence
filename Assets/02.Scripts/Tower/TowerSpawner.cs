@@ -7,9 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class TowerSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] towerPrefab;    //tower����
-    //TODO ��ü�� ���� towerPrefab�� �������� ��� Random���� �������ֱ�
-    //Ÿ�� ��ġ�� Ÿ�� ������ �޾ƿ��� �ش� Ÿ�� ��ġ�� prefabȭ �ص� Ÿ�� ����
+    [SerializeField] private GameObject[] towerPrefab;
     public void SpawnTower(Transform tileTransform)
     {
         TowerTile tile = tileTransform.GetComponent<TowerTile>();
@@ -17,7 +15,5 @@ public class TowerSpawner : MonoBehaviour
 
         GameObject tower = Instantiate(towerPrefab[randomIdx], tileTransform.position, Quaternion.identity);
         tower.GetComponent<TowerStatsHandler>().CurrentStates.characterType = (CharacterType)randomIdx;
-      
-        
     }
 }

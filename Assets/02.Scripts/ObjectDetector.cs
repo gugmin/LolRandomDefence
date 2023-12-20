@@ -14,7 +14,7 @@ public class ObjectDetector : MonoBehaviour
 {
     [SerializeField] private TowerSpawner _towerSpawner;
     [SerializeField] private TowerHandler _towerController;
-    [SerializeField] private CoinManager _coinManager;
+    private CoinManager _coinManager;
     private ActionType _actionType=ActionType.Basic;
     private List<TowerStatsHandler> upgradeTower;
 
@@ -27,6 +27,10 @@ public class ObjectDetector : MonoBehaviour
     {
         _camera = Camera.main;
         upgradeTower = new List<TowerStatsHandler>();
+    }
+    private void Start()
+    {
+        _coinManager = GameManager.instance.CoinManager;
     }
     private void Update()
     {

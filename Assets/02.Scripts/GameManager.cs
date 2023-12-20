@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public CoinManager CoinManager;
     public GameObject victoryPanel;
-    public GameObject defeatPanel;
+    public GameObject defeatPanel;    
     //적구현 요소
     public EnemyStats[] enemyStats;
     //TODO 적 수정
@@ -25,12 +26,14 @@ public class GameManager : MonoBehaviour
     public int playerLife;
 
     private float playTime;
+    private float maxHealthBarWidth;
     private int clearedRounds;
     private int monstersKilled;
     private int totalCoinsEarned;
 
     //라운드 갱신용 텍스트
     private Text roundText;
+    public Text lifeText;
 
     void Awake()
     {
@@ -47,6 +50,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine("StartRound");
+    }
+
+    void Update()
+    {
+        if (lifeText != null)
+        {
+            lifeText.text = playerLife.ToString();
+        }
     }
 
     public IEnumerator StartRound()
@@ -91,50 +102,49 @@ public class GameManager : MonoBehaviour
         //라운드 갱신용 텍스트
         //roundText = GameObject.Find("Round").transform.GetChild(0).GetComponent<Text>();
         //roundText.text = round.ToString();
-    }
+    }    
 
     // 몬스터를 처치했을 때 호출되는 메서드
     public void MonsterKilled()
     {
-        monstersKilled++;        
+        monstersKilled++;
     }
 
     // 라운드가 클리어되었을 때 호출되는 메서드
     public void RoundCleared()
     {
-        clearedRounds++;        
+        clearedRounds++;
     }
 
     // 코인을 얻었을 때 호출되는 메서드
     public void EarnCoins(int amount)
     {
-        totalCoinsEarned += amount;        
+        totalCoinsEarned += amount;
     }
 
     void ActivateVictoryPanel()
     {
-        victoryPanel.SetActive(true);        
+        victoryPanel.SetActive(true);
     }
     
     public void ActivateDefeatPanel()
     {
-        defeatPanel.SetActive(true);        
+        defeatPanel.SetActive(true);
     }
 
     public void GameOver()
-    {        
+    {
         playTime = Time.time;
-
-        // 클리어한 라운드, 몬스터 처치 수, 총 획득한 코인 등을 여기서 갱신
-
-        //if (playerWon)
-        //{
-        //    ActivateVictoryPanel();
-        //}
-        //else
-        //{
-        //    ActivateDefeatPanel();
-        //}
+        
+        if (playerLife <= 0)
+        {
+            defeatPanel.SetActive(true);
+        }
+        
+        if (round == 21)
+        {
+            victoryPanel.SetActive(true);
+        }
     }
 
     // Getter 메서드들

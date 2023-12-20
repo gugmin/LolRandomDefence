@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum ActionType
 {
+    Basic,
     Spawn,
     Sell,
     Upgrade,
@@ -14,7 +15,8 @@ public class ObjectDetector : MonoBehaviour
     [SerializeField] private TowerSpawner _towerSpawner;
     [SerializeField] private TowerHandler _towerController;
     [SerializeField] private CoinManager _coinManager;
-    private ActionType _actionType=ActionType.Upgrade;
+    private ActionType _actionType=ActionType.Basic;
+    private List<TowerStatsHandler> upgradeTower;
 
     private Camera _camera;
     private Ray _ray;
@@ -24,6 +26,7 @@ public class ObjectDetector : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+        upgradeTower = new List<TowerStatsHandler>();
     }
     private void Update()
     {
@@ -36,6 +39,10 @@ public class ObjectDetector : MonoBehaviour
     public void OnPressedSellButton()
     {
         _actionType =ActionType.Sell;
+    }
+    public void OnPressedUpgradeButton()
+    {
+        _actionType=ActionType.Upgrade;
     }
     //마우스 눌리는지 확인
     private void CheckMouseClick()
@@ -70,11 +77,17 @@ public class ObjectDetector : MonoBehaviour
         {
             if (_rayHit.transform.CompareTag("TowerTile"))
             {
-                if (_actionType == ActionType.Spawn)
+                switch(_actionType)
                 {
-                    _towerSpawner.SpawnTower(_rayHit.transform);
-                    _coinManager.BuyTower();
-                    _actionType = ActionType.Upgrade;
+                    case ActionType.Upgrade:
+                        //판넬띄어주면 좋을 거 같음 코인매니저에 연결해서 띄우면 좋을 거 같음.
+                        Debug.Log("업그레이드 중입니다 타워를 선택해라");
+                        break;
+                    case ActionType.Spawn:
+                        _towerSpawner.SpawnTower(_rayHit.transform);
+                        _coinManager.BuyTower();
+                        _actionType = ActionType.Basic;
+                        break;
                 }
             }
             else if(_rayHit.transform.CompareTag("Tower"))
@@ -82,13 +95,34 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        _towerController = _rayHit.transform.GetComponent<TowerHandler>();
-                        _towerController.isClick = true;
-                        _towerController.isSelect = true;
+                        Debug.Log("타워 업글 로직");
+                        //타워 하나 가져오고 맞으면 두개 합치고  ---> 레벨업?
+
+                        upgradeTower.Add(_rayHit.transform.GetComponent<TowerStatsHandler>());
+                        
+                        if(upgradeTower.Count==2)
+                        {
+                            if (upgradeTower[0].CurrentStates.grade == upgradeTower[1].CurrentStates.grade && upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                            {
+                                //하나 버리고 collision 위치로 이동
+                                Debug.Log("합체 진행시켜" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
+                                upgradeTower[0].transform.position = upgradeTower[1].transform.position;
+                                Destroy(upgradeTower[1].gameObject);
+                                upgradeTower[0].LevelUp();
+                                
+                            }
+                            else
+                            {
+                                Debug.Log("합체 기준 불합격");
+                            }
+                            upgradeTower.Clear();
+                        }
+                        //_towerController = _rayHit.transform.GetComponent<TowerHandler>();
+                        //_towerController.isClick = true;
+                        //_towerController.isSelect = true;
                         break;
                     case ActionType.Sell:
                         _coinManager.SellTower(_rayHit.transform);
-                        Debug.Log("파는 로직");
                         break;
                 }
 

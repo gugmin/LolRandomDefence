@@ -2227,7 +2227,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 284492850}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 333146609}
+        m_TargetAssemblyTypeName: ObjectDetector, Assembly-CSharp
+        m_MethodName: OnPressedUpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &284492850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,9 +3231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d849cb44f29b4d4d833166c8a3b2768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 500
-  towerbuy: 300
-  towersell: 240
   notEnoughCoinsPanel: {fileID: 150615677}
   coinText: {fileID: 2132841235}
 --- !u!4 &389267191

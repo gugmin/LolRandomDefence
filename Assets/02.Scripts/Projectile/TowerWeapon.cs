@@ -35,13 +35,13 @@ public class TowerWeapon : MonoBehaviour
     public void SetUp()
     {
         enemyList=GameManager.instance.enemyList;
-        //ChangeState(WeaponState.SearchTarget);
+        ChangeState(WeaponState.SearchTarget);
     }
 
     public void StartState(WeaponState newState)
     {
         SetUp();
-        //StartCoroutine(WeaponState.SearchTarget.ToString());
+        StartCoroutine(WeaponState.SearchTarget.ToString());
     }
     private void ChangeState(WeaponState newState)
     {
@@ -59,63 +59,63 @@ public class TowerWeapon : MonoBehaviour
     }
 
 
-    //private IEnumerator SearchTarget()
-    //{
-    //    while (true)
-    //    {
-    //        if (_towerHandler.isClick)
-    //        {
-    //            yield return null;
-    //        }
-    //        else
-    //        {
-    //            float closestEnemyDistance = Mathf.Infinity;
-    //            for (int i = 0; i < enemyList.Count; i++)
-    //            {
-    //                float distance = Vector3.Distance(enemyList[i].transform.position, transform.position);
-    //                if (distance <= _stats.CurrentStates.attackRange && distance <= closestEnemyDistance)
-    //                {
-    //                    closestEnemyDistance = distance;
-    //                    attackTarget = enemyList[i].transform;
-    //                }
-    //            }
-    //            if (attackTarget != null)
-    //            {
-    //                ChangeState(WeaponState.AttackToTarget);
-    //            }
-    //            yield return null;
-    //        }
+    private IEnumerator SearchTarget()
+    {
+        while (true)
+        {
+            if (_towerHandler.isClick)
+            {
+                yield return null;
+            }
+            else
+            {
+                float closestEnemyDistance = Mathf.Infinity;
+                for (int i = 0; i < enemyList.Count; i++)
+                {
+                    float distance = Vector3.Distance(enemyList[i].transform.position, transform.position);
+                    if (distance <= _stats.CurrentStates.attackRange && distance <= closestEnemyDistance)
+                    {
+                        closestEnemyDistance = distance;
+                        attackTarget = enemyList[i].transform;
+                    }
+                }
+                if (attackTarget != null)
+                {
+                    ChangeState(WeaponState.AttackToTarget);
+                }
+                yield return null;
+            }
 
-    //    }
-    //}
-    //private IEnumerator AttackToTarget()
-    //{
-    //    while(true)
-    //    {
-    //        if (_towerHandler.isClick)
-    //        {
-    //            yield return null;
-    //        }
-    //        else
-    //        {
-    //            if (attackTarget == null)
-    //            {
-    //                ChangeState(WeaponState.SearchTarget);
-    //                break;
-    //            }
-    //            // 사거리보다 멀면 찾는 코루틴 시작
-    //            float distance = Vector3.Distance(attackTarget.position, transform.position);
-    //            if (distance > _stats.CurrentStates.attackRange)
-    //            {
-    //                attackTarget = null;
-    //                ChangeState(WeaponState.SearchTarget);
-    //                break;
-    //            }
-    //            yield return new WaitForSeconds(_stats.CurrentStates.delay);
-    //            SpawnProjectile();
-    //        }
-    //    }
-    //}
+        }
+    }
+    private IEnumerator AttackToTarget()
+    {
+        while (true)
+        {
+            if (_towerHandler.isClick)
+            {
+                yield return null;
+            }
+            else
+            {
+                if (attackTarget == null)
+                {
+                    ChangeState(WeaponState.SearchTarget);
+                    break;
+                }
+                // 사거리보다 멀면 찾는 코루틴 시작
+                float distance = Vector3.Distance(attackTarget.position, transform.position);
+                if (distance > _stats.CurrentStates.attackRange)
+                {
+                    attackTarget = null;
+                    ChangeState(WeaponState.SearchTarget);
+                    break;
+                }
+                yield return new WaitForSeconds(_stats.CurrentStates.delay);
+                SpawnProjectile();
+            }
+        }
+    }
     private void SpawnProjectile()
     {
         GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);

@@ -2586,6 +2586,7 @@ MonoBehaviour:
   _towerSpawner: {fileID: 1447685763}
   _towerController: {fileID: 0}
   clickTower: {fileID: 0}
+  _coinManager: {fileID: 389267190}
 --- !u!4 &333146610
 Transform:
   m_ObjectHideFlags: 0
@@ -14667,7 +14668,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1194757590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 333146609}
+        m_TargetAssemblyTypeName: ObjectDetector, Assembly-CSharp
+        m_MethodName: OnPressedSellButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1194757590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16632,7 +16645,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1759470354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 333146609}
+        m_TargetAssemblyTypeName: ObjectDetector, Assembly-CSharp
+        m_MethodName: OnPressedSpawnButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1759470354
 MonoBehaviour:
   m_ObjectHideFlags: 0

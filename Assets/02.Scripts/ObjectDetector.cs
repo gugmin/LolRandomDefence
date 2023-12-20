@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ActionType
+{
+    Spawn,
+    Sell,
+    Upgrade,
+}
 public class ObjectDetector : MonoBehaviour
 {
     [SerializeField] private TowerSpawner _towerSpawner;
     [SerializeField] private TowerHandler _towerController;
+    [SerializeField] private CoinManager _coinManager;
+    private ActionType _actionType=ActionType.Upgrade;
 
     private Camera _camera;
     private Ray _ray;
     private RaycastHit _rayHit;
+    private bool isSpawn = false;
 
-    private GameObject towerStatusPanel; // Å¸¿ö ½ºÅÝÃ¢ ¶ç¿ì±â¸¦ À§ÇØ ¼±¾ðÇß½À´Ï´Ù.
-    public GameObject clickTower; // Å¸¿ö ½ºÅÝÀ» ¹Þ¾Æ¿À±â À§ÇØ ¼±¾ðÇß½À´Ï´Ù.
+    private GameObject towerStatusPanel; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
+    public GameObject clickTower; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 
     private void Awake()
     {
@@ -21,21 +30,29 @@ public class ObjectDetector : MonoBehaviour
     }
     private void Start()
     {
-        towerStatusPanel = GameObject.Find("Canvas").transform.GetChild(1).gameObject; // Å¸¿ö ½ºÅÝÃ¢ °¡Á®¿À±â
+        towerStatusPanel = GameObject.Find("Canvas").transform.GetChild(1).gameObject; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
     private void Update()
     {
         CheckMouseClick();
     }
-    //¸¶¿ì½º ´­¸®´ÂÁö È®ÀÎ
+    public void OnPressedSpawnButton()
+    {
+        _actionType=ActionType.Spawn;
+    }
+    public void OnPressedSellButton()
+    {
+        _actionType =ActionType.Sell;
+    }
+    //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     private void CheckMouseClick()
     {
-        //¸¶¿ì½º ´­¸®¸é OnClickÇÔ¼ö ½ÇÇà
+        //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ OnClickï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         if(Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
-        //¸¶¿ì½º°¡ ¶§Á³À» ¶§ ·ÎÁ÷
+        //ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if(Input.GetMouseButtonUp(0))
         {
             if(_towerController!= null)
@@ -46,7 +63,7 @@ public class ObjectDetector : MonoBehaviour
                 _towerController.CollcateTower();
             }
         }
-        // Å¸¿ö ½ºÅÝÃ¢ ¶ç¿ì±â
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetMouseButtonDown(1))
         {
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -62,7 +79,7 @@ public class ObjectDetector : MonoBehaviour
     {
         TowerTileDetector();
     }
-    //Å¸¿ö¸¦ ¼³Ä¡ÇØµµ µÇ´Â Å¸ÀÏÀÎÁö ¿©ºÎ È®ÀÎÇÏ´Â ÇÔ¼ö
+    //Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Øµï¿½ ï¿½Ç´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     private void TowerTileDetector()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -71,13 +88,28 @@ public class ObjectDetector : MonoBehaviour
         {
             if (_rayHit.transform.CompareTag("TowerTile"))
             {
-                _towerSpawner.SpawnTower(_rayHit.transform);
+                if (_actionType == ActionType.Spawn)
+                {
+                    _towerSpawner.SpawnTower(_rayHit.transform);
+                    _coinManager.BuyTower();
+                    _actionType = ActionType.Upgrade;
+                }
             }
             else if(_rayHit.transform.CompareTag("Tower"))
             {
-                _towerController = _rayHit.transform.GetComponent<TowerHandler>();
-                _towerController.isClick = true;
-                _towerController.isSelect = true;
+                switch(_actionType)
+                {
+                    case ActionType.Upgrade:
+                        _towerController = _rayHit.transform.GetComponent<TowerHandler>();
+                        _towerController.isClick = true;
+                        _towerController.isSelect = true;
+                        break;
+                    case ActionType.Sell:
+                        _coinManager.SellTower(_rayHit.transform);
+                        Debug.Log("ï¿½Ä´ï¿½ ï¿½ï¿½ï¿½ï¿½");
+                        break;
+                }
+
             }
         }
     }

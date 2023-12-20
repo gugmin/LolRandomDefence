@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    private int coins=1000000; // 현재 보유 중인 코인 수
+    private int coins=500; // 현재 보유 중인 코인 수
     private int towerbuy=200; // 타워 구매 가격
     private int towersell=100; // 타워 판매 가격
     //public int towerupgrade; // 업그레이드의 가격
@@ -32,7 +32,7 @@ public class CoinManager : MonoBehaviour
     }
 
     // 타워를 구매하는 함수
-    public void BuyTower()
+    public bool BuyTower()
     {
         if (coins >= towerbuy)
         {
@@ -41,7 +41,9 @@ public class CoinManager : MonoBehaviour
         else
         {
             NotEnoughCoinsPanel();
+            return false;
         }
+        return true;
     }
 
     // 타워를 판매하는 함수

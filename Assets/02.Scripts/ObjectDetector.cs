@@ -84,8 +84,8 @@ public class ObjectDetector : MonoBehaviour
                         Debug.Log("업그레이드 중입니다 타워를 선택해라");
                         break;
                     case ActionType.Spawn:
-                        _towerSpawner.SpawnTower(_rayHit.transform);
-                        _coinManager.BuyTower();
+                        if(_coinManager.BuyTower())
+                            _towerSpawner.SpawnTower(_rayHit.transform);
                         _actionType = ActionType.Basic;
                         break;
                 }

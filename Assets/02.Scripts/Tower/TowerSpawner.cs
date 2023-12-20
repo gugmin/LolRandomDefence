@@ -17,7 +17,7 @@ public class TowerSpawner : MonoBehaviour
         //int randomIdx;
 
         if (tile.IsTower == false)
-        {
+        {            
             tile.IsTower = true;
             //randomIdx=Random.Range(0, 7);
             Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);

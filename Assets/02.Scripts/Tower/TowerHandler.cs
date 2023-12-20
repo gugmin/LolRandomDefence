@@ -13,7 +13,7 @@ public class TowerHandler : MonoBehaviour
     private TowerHandler _collisionTowerController;
     private TowerHandler _towerController;
     private TowerTile _baseTowerTile;
-    private Vector3 _basePosition;
+    private Vector3 _basePosition;    
 
     public bool isClick = false;
     public bool isSelect = false;
@@ -27,7 +27,7 @@ public class TowerHandler : MonoBehaviour
 
     private void Awake()
     {
-        _camera = Camera.main;
+        _camera = Camera.main;        
     }
     private void Start()
     {
@@ -106,7 +106,7 @@ public class TowerHandler : MonoBehaviour
             return;
 
         if (_collisionTowerController.level == level)
-        {
+        {            
             //TODO 만약 합체 가능하면 둘 중 하나를 버리고 그거의 객체의 속성을 올려주고
             Debug.Log("합체 가능");
             _basePosition = _collisionTowerController.transform.position;

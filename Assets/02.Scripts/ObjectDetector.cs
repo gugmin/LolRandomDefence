@@ -3,40 +3,79 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ActionType
+{
+    Basic,
+    Spawn,
+    Sell,
+    Upgrade,
+}
 public class ObjectDetector : MonoBehaviour
 {
     [SerializeField] private TowerSpawner _towerSpawner;
     [SerializeField] private TowerHandler _towerController;
+    private CoinManager _coinManager;
+    private ActionType _actionType=ActionType.Basic;
+    private List<TowerStatsHandler> upgradeTower;
 
     private Camera _camera;
     private Ray _ray;
     private RaycastHit _rayHit;
 
+    [SerializeField] private TowerStatusPanel towerStatusPanel; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
+
     private void Awake()
     {
         _camera = Camera.main;
+        upgradeTower = new List<TowerStatsHandler>();
+    }
+    private void Start()
+    {
+        _coinManager = GameManager.instance.CoinManager;
     }
     private void Update()
     {
         CheckMouseClick();
     }
-    //¸¶¿ì½º ´­¸®´ÂÁö È®ÀÎ
+    public void OnPressedSpawnButton()
+    {
+        _actionType=ActionType.Spawn;
+    }
+    public void OnPressedSellButton()
+    {
+        _actionType =ActionType.Sell;
+    }
+    public void OnPressedUpgradeButton()
+    {
+        _actionType=ActionType.Upgrade;
+    }
+  
     private void CheckMouseClick()
     {
-        //¸¶¿ì½º ´­¸®¸é OnClickÇÔ¼ö ½ÇÇà
+
         if(Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
-        //¸¶¿ì½º°¡ ¶§Á³À» ¶§ ·ÎÁ÷
+     
         else if(Input.GetMouseButtonUp(0))
         {
             if(_towerController!= null)
             {
                 _towerController.isClick = false;
+                _towerController.isSelect = false;
                 _towerController.UpgradeTower();
                 _towerController.CollcateTower();
-                _towerController.isSelect = false;
+            }
+        }
+ 
+        if (Input.GetMouseButtonDown(1))
+        {
+            _ray = _camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(_ray, out hit, Mathf.Infinity) && hit.transform.CompareTag("Tower"))
+            {
+                towerStatusPanel.SetTowerStatusHandler(hit.transform);
             }
         }
     }
@@ -44,7 +83,7 @@ public class ObjectDetector : MonoBehaviour
     {
         TowerTileDetector();
     }
-    //Å¸¿ö¸¦ ¼³Ä¡ÇØµµ µÇ´Â Å¸ÀÏÀÎÁö ¿©ºÎ È®ÀÎÇÏ´Â ÇÔ¼ö
+
     private void TowerTileDetector()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -53,13 +92,60 @@ public class ObjectDetector : MonoBehaviour
         {
             if (_rayHit.transform.CompareTag("TowerTile"))
             {
-                _towerSpawner.SpawnTower(_rayHit.transform);
+                switch(_actionType)
+                {
+                    case ActionType.Upgrade:
+                        Debug.Log("íƒ€ì›ŒëˆŒëŸ¬ì£¼ì„¸ìš”");
+                        break;
+                    case ActionType.Spawn:
+                        if(_coinManager.BuyTower())
+                            _towerSpawner.SpawnTower(_rayHit.transform);
+                        _actionType = ActionType.Basic;
+                        break;
+                }
             }
             else if(_rayHit.transform.CompareTag("Tower"))
             {
-                _towerController = _rayHit.transform.GetComponent<TowerHandler>();
-                _towerController.isClick = true;
-                _towerController.isSelect = true;
+                switch(_actionType)
+                {
+                    case ActionType.Upgrade:
+
+                        upgradeTower.Add(_rayHit.transform.GetComponent<TowerStatsHandler>());
+
+                        if(upgradeTower.Count==2)
+                        {
+                            if (upgradeTower[0] == upgradeTower[1])
+                            {
+                                upgradeTower.Remove(upgradeTower[1]);
+                                Debug.Log("ë‹¤ë¥¸ íƒ€ì›Œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
+                            }
+                            else if(upgradeTower[0].CurrentStates.grade == upgradeTower[1].CurrentStates.grade && upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                            {
+                                Debug.Log("ì—…ê¸€ë¡œì§ ì‹œì‘" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
+                                upgradeTower[0].transform.position = upgradeTower[1].transform.position;
+                                Destroy(upgradeTower[1].gameObject);
+                                upgradeTower[0].LevelUp();
+                                
+                            }
+                            else
+                            {
+                                if (upgradeTower[0].CurrentStates.grade != upgradeTower[1].CurrentStates.grade)
+                                    Debug.Log("ê°™ì€ ë“±ê¸‰ì´ ì•„ë‹™ë‹ˆë‹¤");
+                                else if (upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                                    Debug.Log("ê°™ì€ íƒ€ì›Œê°€ ì•„ë‹ˆë¹ˆë‹¤");
+                            }
+                            upgradeTower.Clear();
+                        }
+                        //_towerController = _rayHit.transform.GetComponent<TowerHandler>();
+                        //_towerController.isClick = true;
+                        //_towerController.isSelect = true;
+                        break;
+                    case ActionType.Sell:
+                        _coinManager.SellTower(_rayHit.transform);
+                        _actionType = ActionType.Basic;
+                        break;
+                }
+
             }
         }
     }

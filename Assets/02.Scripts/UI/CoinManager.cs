@@ -1,105 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coins; // ÇöÀç º¸À¯ ÁßÀÎ ÄÚÀÎ ¼ö
-    public int towerbuy; // Å¸¿ö ±¸¸Å °¡°Ý
-    public int towersell; // Å¸¿ö ÆÇ¸Å °¡°Ý
-    //public int towerupgrade; // ¾÷±×·¹ÀÌµåÀÇ °¡°Ý
+    private int coins=900; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    private int towerbuy=300; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private int towersell=100; // Å¸ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //public int towerupgrade; // ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    public GameObject notEnoughCoinsPanel; // ÄÚÀÎ ºÎÁ· ½Ã º¸¿©ÁÙ ÆÐ³Î
+    public GameObject notEnoughCoinsPanel; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½
 
     public Text coinText;
 
 
     void Update()
     {
-        // ÄÚÀÎ °ªÀ» UI Text¿¡ Ç¥½Ã
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI Textï¿½ï¿½ Ç¥ï¿½ï¿½
         if (coinText != null)
         {
             coinText.text = coins.ToString();
         }
     }
 
-    // ´Ù¸¥ ºÎºÐ¿¡¼­ ÄÚÀÎÀ» º¯°æÇÒ ¶§ È£ÃâÇÒ ÇÔ¼ö
+    // ï¿½Ù¸ï¿½ ï¿½ÎºÐ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void ModifyCoins(int amount)
     {
         coins += amount;
     }
 
-    // Å¸¿ö¸¦ ±¸¸ÅÇÏ´Â ÇÔ¼ö
-    public void BuyTower()
+    // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    public bool BuyTower()
     {
         if (coins >= towerbuy)
         {
             coins -= towerbuy;
-
-            TowerSpawner towerSpawner = FindObjectOfType<TowerSpawner>();
-
-            if (towerSpawner != null)
-            {
-                Transform playerTransform = transform;
-
-                towerSpawner.SpawnTower(playerTransform);
-            }
         }
         else
         {
             NotEnoughCoinsPanel();
+            return false;
         }
+        return true;
     }
 
-    // Å¸¿ö¸¦ ÆÇ¸ÅÇÏ´Â ÇÔ¼ö
-    public void SellTower()
+    // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    public void SellTower(Transform tower)
     {
-        coins += towersell;
-        // Å¸¿ö ÆÇ¸Å ·ÎÁ÷ Ãß°¡
-        // Å¸¿ö¸¦ ¾À¿¡¼­ Á¦°ÅÇÏ´Â µîÀÇ µ¿ÀÛ
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¾ï¿½ ï¿½Ç°ï¿½
+        TowerStatsHandler _stats = tower.GetComponent<TowerStatsHandler>();
+        coins += towersell * (_stats.CurrentStates.grade+1); //ï¿½Ç¸Å°ï¿½ï¿½ï¿½100ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Destroy(tower.gameObject);
     }
-
-    // Å¸¿ö¸¦ ¾÷±×·¹ÀÌµåÇÏ´Â ÇÔ¼ö
-    //public void UpgradeTower()
-    //{
-    //    if (coins >= towerupgrade)
-    //    {
-    //        coins -= towerupgrade;
-
-    //        TowerHandler towerHandler = FindObjectOfType<TowerHandler>();
-
-    //        if (towerHandler != null)
-    //        {
-    //            towerHandler.UpgradeTower();
-    //        }
-    //        else 
-    //        {
-    //            Debug.Log("Å¸¿ö°¡ ¾Æ´Õ´Ï´Ù");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        NotEnoughCoinsPanel();
-    //    }
-    //}
 
     public void GetCoins()
     {
-        //°ñµå È¹µæ
+        //ï¿½ï¿½ï¿½ È¹ï¿½ï¿½
         if (GameManager.instance.round == 5)
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 50g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 50g
             coins += 50;
         }
         else if (GameManager.instance.round == 10)
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 30g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 30g
             coins += 30;
         }
         else if (GameManager.instance.round == 15)
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 350g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 350g
             coins += 350;
         }
         else if (GameManager.instance.round == 16 ||
@@ -107,24 +78,24 @@ public class CoinManager : MonoBehaviour
                     GameManager.instance.round == 18 ||
                     GameManager.instance.round == 19)
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 200g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 200g
             coins += 200;
         }
         else if (GameManager.instance.round == 20)
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 10000g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 10000g
             coins += 10000;
         }
-        else //±âº» ¶ó¿îµå
+        else //ï¿½âº» ï¿½ï¿½ï¿½ï¿½
         {
-            //ÇÃ·¹ÀÌ¾î°ñµå += 20g
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ += 20g
             coins += 20;
         }
     }
     
     private void NotEnoughCoinsPanel()
     {
-        // "ÄÚÀÎ ºÎÁ·" ÆÐ³Î Ç¥½Ã
+        // "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" ï¿½Ð³ï¿½ Ç¥ï¿½ï¿½
         if (notEnoughCoinsPanel != null)
         {
             notEnoughCoinsPanel.SetActive(true);

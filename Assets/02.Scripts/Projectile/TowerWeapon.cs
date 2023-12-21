@@ -6,14 +6,13 @@ using UnityEngine.XR;
 public enum WeaponState
 {
     SearchTarget,
-    AttackToTarget
+    AttackToTarget,
 }
 public class TowerWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float delay;
-    [SerializeField] private float range;
+    private TowerHandler _towerHandler;
     private TowerStatsHandler _stats;
     private WeaponState weaponState = WeaponState.SearchTarget;
     private Transform attackTarget = null;
@@ -22,6 +21,7 @@ public class TowerWeapon : MonoBehaviour
     private void Start()
     {
         _stats = GetComponent<TowerStatsHandler>();
+        _towerHandler=GetComponent<TowerHandler>();
         SetUp();
     }
     private void Update()
@@ -38,6 +38,11 @@ public class TowerWeapon : MonoBehaviour
         ChangeState(WeaponState.SearchTarget);
     }
 
+    public void StartState(WeaponState newState)
+    {
+        SetUp();
+        StartCoroutine(WeaponState.SearchTarget.ToString());
+    }
     private void ChangeState(WeaponState newState)
     {
         StopCoroutine(weaponState.ToString());
@@ -52,47 +57,63 @@ public class TowerWeapon : MonoBehaviour
 
         transform.rotation=Quaternion.Euler(0,0,degree);
     }
+
+
     private IEnumerator SearchTarget()
     {
         while (true)
         {
-            float closestEnemyDistance = Mathf.Infinity;
-            for (int i = 0; i < enemyList.Count; i++)
+            if (_towerHandler.isClick)
             {
-                float distance = Vector3.Distance(enemyList[i].transform.position, transform.position);
-                if (distance <= range && distance <= closestEnemyDistance)
+                yield return null;
+            }
+            else
+            {
+                float closestEnemyDistance = Mathf.Infinity;
+                for (int i = 0; i < enemyList.Count; i++)
                 {
-                    closestEnemyDistance = distance;
-                    attackTarget = enemyList[i].transform;
+                    float distance = Vector3.Distance(enemyList[i].transform.position, transform.position);
+                    if (distance <= _stats.CurrentStates.attackRange && distance <= closestEnemyDistance)
+                    {
+                        closestEnemyDistance = distance;
+                        attackTarget = enemyList[i].transform;
+                    }
                 }
+                if (attackTarget != null)
+                {
+                    ChangeState(WeaponState.AttackToTarget);
+                }
+                yield return null;
             }
-            if (attackTarget != null)
-            {
-                ChangeState(WeaponState.AttackToTarget);
-            }
-            yield return null;
+
         }
     }
     private IEnumerator AttackToTarget()
     {
-        while(true)
+        while (true)
         {
-            // target있는지 검사 (없으면 찾는 코루틴 시작)
-            if (attackTarget==null)
+            if (_towerHandler.isClick)
             {
-                ChangeState(WeaponState.SearchTarget);
-                break;
+                yield return null;
             }
-            // 사거리보다 멀면 찾는 코루틴 시작
-            float distance = Vector3.Distance(attackTarget.position, transform.position);
-            if(distance>range)
+            else
             {
-                attackTarget = null;
-                ChangeState(WeaponState.SearchTarget);
-                break;
+                if (attackTarget == null)
+                {
+                    ChangeState(WeaponState.SearchTarget);
+                    break;
+                }
+                // 사거리보다 멀면 찾는 코루틴 시작
+                float distance = Vector3.Distance(attackTarget.position, transform.position);
+                if (distance > _stats.CurrentStates.attackRange)
+                {
+                    attackTarget = null;
+                    ChangeState(WeaponState.SearchTarget);
+                    break;
+                }
+                yield return new WaitForSeconds(_stats.CurrentStates.delay);
+                SpawnProjectile();
             }
-            yield return new WaitForSeconds(delay);
-            SpawnProjectile();
         }
     }
     private void SpawnProjectile()

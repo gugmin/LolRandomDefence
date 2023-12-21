@@ -69,8 +69,13 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartRound()
     {
         RoundClear();
-        currentSprite.sprite = enemyStats[round - 1].enemySprite;
-        nextSprite.sprite = enemyStats[round].enemySprite;
+
+        if(round<21)
+        {
+            currentSprite.sprite = enemyStats[round - 1].enemySprite;
+            nextSprite.sprite = enemyStats[round].enemySprite;
+        }
+
         yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < roundPerSpawn; i++)
@@ -88,8 +93,13 @@ public class GameManager : MonoBehaviour
     }
     void RoundClear()
     {
-
         round++;
+        if (round == 21)
+        {
+            Time.timeScale = 0f;
+            victoryPanel.SetActive(true);
+            
+        }
         if (round == 5)
         {
             roundPerSpawn = 10;

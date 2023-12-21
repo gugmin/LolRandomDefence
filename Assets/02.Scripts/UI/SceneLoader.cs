@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
-
+    
     public void OnEndClick()
     {
         SceneManager.LoadScene("EndScene");

@@ -1816,7 +1816,7 @@ GameObject:
   - component: {fileID: 200844432}
   - component: {fileID: 200844431}
   - component: {fileID: 200844430}
-  - component: {fileID: 200844429}
+  - component: {fileID: 200844433}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -1845,18 +1845,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -255}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &200844429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200844427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad94bbf70941824daa44711f1e1c5fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &200844430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,7 +1889,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 200844429}
+      - m_Target: {fileID: 200844433}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: OnEndClick
         m_Mode: 1
@@ -1951,6 +1939,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200844427}
   m_CullTransparentMesh: 1
+--- !u!114 &200844433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200844427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad94bbf70941824daa44711f1e1c5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &206083849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4758643165141579708, guid: 2aa01b2fea191e9419309e387865658b,
@@ -7405,10 +7405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 0}
-  MasteraudioSlider: {fileID: 0}
-  BGMaudioSlider: {fileID: 0}
-  EffectaudioSlider: {fileID: 0}
 --- !u!114 &901444563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17148,10 +17144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 0}
-  MasteraudioSlider: {fileID: 0}
-  BGMaudioSlider: {fileID: 0}
-  EffectaudioSlider: {fileID: 0}
 --- !u!114 &1785137048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17715,6 +17707,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 602ad27b3e006784e97cc559bf282ddd, type: 2}
   - {fileID: 11400000, guid: 072cd6236841c754c91f3f4e33d4ce78, type: 2}
   - {fileID: 11400000, guid: b16825e03871f194e823f78757e3ee43, type: 2}
+  - {fileID: 11400000, guid: 78bee4cd8abb1414b957f877490a84bb, type: 2}
   enemy: {fileID: 4578147461625044031, guid: 2d1b4d4fb7a405140a08595ac899f816, type: 3}
   spawnPoint: {fileID: 464072250}
   round: 0
@@ -18970,10 +18963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 0}
-  MasteraudioSlider: {fileID: 0}
-  BGMaudioSlider: {fileID: 0}
-  EffectaudioSlider: {fileID: 0}
 --- !u!114 &2106560994
 MonoBehaviour:
   m_ObjectHideFlags: 0

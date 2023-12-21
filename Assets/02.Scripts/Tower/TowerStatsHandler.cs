@@ -1,31 +1,36 @@
-using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerStatsHandler : MonoBehaviour
 {
-    [SerializeField] private TowerStats _baseStats;
+    [SerializeField] private List<TowerStats> levelStates;
     public TowerStats CurrentStates { get; private set; }
-    public List<TowerStats> statsModifiers = new List<TowerStats>();
+    [SerializeField] private TowerStats _baseStats;
+    [SerializeField] SpriteRenderer[] stars;
 
     private void Awake()
     {
-        UpdateTowerStats();
+        SetTowerStats();
     }
 
-    private void UpdateTowerStats()
+    private void SetTowerStats()
     {
-        AttackSO attackSO = null;
-        if(_baseStats.attackSO!= null)
-        {
-            attackSO=Instantiate(_baseStats.attackSO);
-        }
-        CurrentStates = new TowerStats { attackSO = attackSO };
+        CurrentStates = new TowerStats();
+
         CurrentStates.grade = _baseStats.grade;
         CurrentStates.power = _baseStats.power;
         CurrentStates.attackRange = _baseStats.attackRange;
         CurrentStates.delay = _baseStats.delay;
-        CurrentStates.statsChangeType = _baseStats.statsChangeType;
+        stars[0].gameObject.SetActive(true);
     }
-
+    public void LevelUp()
+    {
+        if(CurrentStates.grade<levelStates.Count)
+        {
+            CurrentStates = levelStates[CurrentStates.grade];
+            stars[CurrentStates.grade].gameObject.SetActive(true);
+        }
+    }
 }

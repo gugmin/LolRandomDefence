@@ -49,15 +49,15 @@ public class ObjectDetector : MonoBehaviour
     {
         _actionType=ActionType.Upgrade;
     }
-    //���콺 �������� Ȯ��
+  
     private void CheckMouseClick()
     {
-        //���콺 ������ OnClick�Լ� ����
+
         if(Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
-        //���콺�� ������ �� ����
+     
         else if(Input.GetMouseButtonUp(0))
         {
             if(_towerController!= null)
@@ -68,7 +68,7 @@ public class ObjectDetector : MonoBehaviour
                 _towerController.CollcateTower();
             }
         }
-        // Ÿ�� ����â ����
+ 
         if (Input.GetMouseButtonDown(1))
         {
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -83,7 +83,7 @@ public class ObjectDetector : MonoBehaviour
     {
         TowerTileDetector();
     }
-    //Ÿ���� ��ġ�ص� �Ǵ� Ÿ������ ���� Ȯ���ϴ� �Լ�
+
     private void TowerTileDetector()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -95,8 +95,7 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        //�ǳڶ���ָ� ���� �� ���� ���θŴ����� �����ؼ� ���� ���� �� ����.
-                        Debug.Log("���׷��̵� ���Դϴ� Ÿ���� �����ض�");
+                        Debug.Log("타워눌러주세요");
                         break;
                     case ActionType.Spawn:
                         if(_coinManager.BuyTower())
@@ -110,16 +109,19 @@ public class ObjectDetector : MonoBehaviour
                 switch(_actionType)
                 {
                     case ActionType.Upgrade:
-                        //Ÿ�� �ϳ� �������� ������ �ΰ� ��ġ��  ---> ������?
 
                         upgradeTower.Add(_rayHit.transform.GetComponent<TowerStatsHandler>());
-                        
+
                         if(upgradeTower.Count==2)
                         {
-                            if (upgradeTower[0].CurrentStates.grade == upgradeTower[1].CurrentStates.grade && upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                            if (upgradeTower[0] == upgradeTower[1])
                             {
-                                //�ϳ� ������ collision ��ġ�� �̵�
-                                Debug.Log("��ü �������" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
+                                upgradeTower.Remove(upgradeTower[1]);
+                                Debug.Log("다른 타워를 선택해주세요");
+                            }
+                            else if(upgradeTower[0].CurrentStates.grade == upgradeTower[1].CurrentStates.grade && upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                            {
+                                Debug.Log("업글로직 시작" + upgradeTower[0].CurrentStates.characterType + " " + upgradeTower[1].CurrentStates.characterType);
                                 upgradeTower[0].transform.position = upgradeTower[1].transform.position;
                                 Destroy(upgradeTower[1].gameObject);
                                 upgradeTower[0].LevelUp();
@@ -127,7 +129,10 @@ public class ObjectDetector : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("��ü ���� ���հ�");
+                                if (upgradeTower[0].CurrentStates.grade != upgradeTower[1].CurrentStates.grade)
+                                    Debug.Log("같은 등급이 아닙니다");
+                                else if (upgradeTower[0].CurrentStates.characterType == upgradeTower[1].CurrentStates.characterType)
+                                    Debug.Log("같은 타워가 아니빈다");
                             }
                             upgradeTower.Clear();
                         }
@@ -137,6 +142,7 @@ public class ObjectDetector : MonoBehaviour
                         break;
                     case ActionType.Sell:
                         _coinManager.SellTower(_rayHit.transform);
+                        _actionType = ActionType.Basic;
                         break;
                 }
 

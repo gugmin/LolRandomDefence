@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
     public void OnStartButtonClick()
     {
          SceneManager.LoadScene("gugminScene");
+         //GameManager.instance.StartCoroutine("StartRound");
     }
 
     public void OnContinueClick()

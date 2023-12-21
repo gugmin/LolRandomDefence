@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         StartCoroutine("StartRound");
     }
 
@@ -70,7 +71,12 @@ public class GameManager : MonoBehaviour
     {
         RoundClear();
 
-        if(round<21)
+        if (round == 0)
+        {
+            currentSprite.sprite = enemyStats[round].enemySprite;
+            nextSprite.sprite = enemyStats[round + 1].enemySprite;
+        }
+        else if(round<21)
         {
             currentSprite.sprite = enemyStats[round - 1].enemySprite;
             nextSprite.sprite = enemyStats[round].enemySprite;
@@ -94,12 +100,12 @@ public class GameManager : MonoBehaviour
     void RoundClear()
     {
         round++;
+
         if (round == 21)
         {
-            Time.timeScale = 0f;
-            victoryPanel.SetActive(true);
-            
+            GameOver();
         }
+
         if (round == 5)
         {
             roundPerSpawn = 10;
@@ -156,13 +162,19 @@ public class GameManager : MonoBehaviour
 
         if (playerLife <= 0)
         {
+            playerLife = 30;
+            round = 1;
             defeatPanel.SetActive(true);
         }
 
         if (round == 21)
         {
+            playerLife = 30;
+            round = 0;
             victoryPanel.SetActive(true);
         }
+
+        Time.timeScale = 0f;
     }
 
 

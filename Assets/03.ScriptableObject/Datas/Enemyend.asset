@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemyend
   m_EditorClassIdentifier: 
   enemyHealth: 3000
-  enemySprite: {fileID: 0}
+  enemySprite: {fileID: 21300000, guid: edc54ecf84bd047488bb911f60360071, type: 3}

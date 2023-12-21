@@ -7405,6 +7405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
+  MasteraudioSlider: {fileID: 0}
+  BGMaudioSlider: {fileID: 0}
+  EffectaudioSlider: {fileID: 0}
 --- !u!114 &901444563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17144,6 +17148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
+  MasteraudioSlider: {fileID: 0}
+  BGMaudioSlider: {fileID: 0}
+  EffectaudioSlider: {fileID: 0}
 --- !u!114 &1785137048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18963,6 +18971,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48045b163f6bffb46b202d9307238978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
+  MasteraudioSlider: {fileID: 0}
+  BGMaudioSlider: {fileID: 0}
+  EffectaudioSlider: {fileID: 0}
 --- !u!114 &2106560994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19455,7 +19467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138915377

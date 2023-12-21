@@ -18,7 +18,7 @@ public enum CharacterType
 public class TowerStats
 {
     public CharacterType characterType;
-    [Range(0, 100)] public int power;
+    [Range(0, 200)] public int power;
     [Range(0, 100)] public int size;
     [Range(0f, 20f)] public float attackRange;
     [Range(0f, 20f)] public float delay;

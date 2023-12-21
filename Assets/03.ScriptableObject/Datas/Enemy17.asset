@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbbd5a2cf5b05744969393b03ba52c7, type: 3}
   m_Name: Enemy17
   m_EditorClassIdentifier: 
-  enemyHealth: 1
+  enemyHealth: 2000
   enemySprite: {fileID: 21300000, guid: bf2bd264545ff824981d3d09a84d89a3, type: 3}
-  isDead: 1
